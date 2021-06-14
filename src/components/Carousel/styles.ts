@@ -15,10 +15,16 @@ export const ChevronBackIcon = styled(ChevronBackSVG)`
   position: absolute;
   top: 30%;
   left: 0px;
+  transition: 0.5s;
+  cursor: pointer;
+  z-index: 100;
+
+  &:hover {
+    transform: scaleY(1.25);
+  }
 
   &:hover * {
-    cursor: pointer;
-    stroke: #ffffff;
+    stroke: #fe3189;
   }
 `;
 
@@ -28,9 +34,15 @@ export const ChevronFrontIcon = styled(ChevronFrontSVG)`
   position: absolute;
   top: 30%;
   right: 0px;
+  transition: 0.5s;
+  cursor: pointer;
+  z-index: 100;
+
+  &:hover {
+    transform: scaleY(1.25);
+  }
 
   &:hover * {
-    cursor: pointer;
-    stroke: #ffffff;
+    stroke: #fe3189;
   }
 `;

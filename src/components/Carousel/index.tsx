@@ -4,11 +4,11 @@ import { Container, ChevronBackIcon, ChevronFrontIcon } from './styles';
 
 import CarouselItem from '../CarouselItem'
 
-import { DataContext } from '../DataContext'
+import { DataContext } from '../../context/DataContext'
 
 function Carousel() {
   const { popularMovies } = useContext(DataContext)
-  const [carouselDisplay, setCarouselDisplay] = useState<any[]>([]);
+  const [carouselDisplay, setCarouselDisplay] = useState<number[]>([]);
   const isMobileSize = useMaxWidth(480);
   const isTabletSize = useMaxWidth(920);
 
@@ -25,6 +25,7 @@ function Carousel() {
   function renderMovies() {
     return popularMovies?.map((movie, index) => (
       <CarouselItem
+        id={movie.id}
         active={carouselDisplay.includes(index)}
         key={movie.id}
         image={movie.poster_path}
@@ -35,11 +36,33 @@ function Carousel() {
     ))
   }
 
+  function handlePlus(arr: any[], count: number[]) {
+    const lastItemIndex = arr.length - 1;
+    const lastCountIndex = count.length - 1;
+    return count[lastCountIndex] === lastItemIndex ? count : count.map((number) => number + 1);
+  }
+
+  function handleMinus(count: number[]) {
+    return count[0] === 0 ? count : count.map((number) => number - 1);
+  }
+
+  function handlePreviusCarousel() {
+    if(popularMovies) {
+      setCarouselDisplay((prevState) => handleMinus(prevState));
+    }
+  }
+  
+  function handleNextCarousel() {
+    if(popularMovies) {
+      setCarouselDisplay((prevState) => handlePlus(popularMovies, prevState));
+    }
+  }
+
   return (
     <Container>
-      <ChevronBackIcon />
+      <ChevronBackIcon onClick={handlePreviusCarousel} />
       {renderMovies()}
-      <ChevronFrontIcon />
+      <ChevronFrontIcon onClick={handleNextCarousel} />
     </Container>
   )
 }

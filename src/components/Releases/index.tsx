@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Container, Heading, Title, EllipsePulsing } from './styles';
 
 import Carousel from '../Carousel'

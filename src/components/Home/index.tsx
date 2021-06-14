@@ -6,7 +6,7 @@ import Footer from '../Footer'
 import Releases from '../Releases'
 import Catalog from '../Catalog'
 
-import { DataProvider } from '../DataContext'
+import { DataProvider } from '../../context/DataContext'
 
 function Home() { 
   return (

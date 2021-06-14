@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Container, Section, MenuIcon, SearchIcon, TextLogo } from './styles'
 
 function Header() {

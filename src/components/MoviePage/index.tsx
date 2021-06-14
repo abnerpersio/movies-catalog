@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import PropTypes, { InferProps } from 'prop-types'
-import { Container } from './styles'
+import React, { useState, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { Container, Section, Button } from './styles';
 
-import Header from '../Header'
-import Footer from '../Footer'
-import Releases from '../Releases'
-import Catalog from '../Catalog'
-
-import { DataProvider } from '../DataContext'
+import ErrorPage from '../404'
+import Header from '../Header';
+import Footer from '../Footer';
+import MovieHeader from '../MovieHeader';
+import MovieBody from '../MovieBody';
 
 const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxY2E2MDc5ZDM3N2JhMGExODU4MDc3YWZjMDVkZDFmMyIsInN1YiI6IjYwYzQ0NDI2ZDA0ZDFhMDAyOTk1MTI1YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.p3mk4AJk_5nt7Lor-qi1byDdi4LwUaS0hZiLvz98AyA'
 
-function MoviePage(props: InferProps<typeof MoviePage.propTypes>) {
+function MoviePage({ match }: RouteComponentProps<{ movieId?: string }>) {
   const [movie, setMovie] = useState<any>({})
   const [notFound, setNotFound] = useState<boolean>(false)
-  const { movieId } = props.match.params;
+  const { movieId } = match.params;
 
   const getMovie = async () => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, {
@@ -37,26 +36,34 @@ function MoviePage(props: InferProps<typeof MoviePage.propTypes>) {
     })
   }
 
-  console.log(movie)
-
   useEffect(() => {
     getMovie()
   }, [])
   
   return (
-    <DataProvider>
-      <Container>
-        <Header />
+    <Container>
+      <Header />
 
+      {
+        notFound 
+          ? <ErrorPage /> 
+          : 
+          <>
+            <MovieHeader movie={movie} />
+            <MovieBody />
+          </>
+      }
 
-        <Footer />
-      </Container>
-    </DataProvider>
+      <Section>
+        <Button to="/home">voltar</Button>
+      </Section>
+
+      <Footer />
+    </Container>
   )
 }
 
-MoviePage.propTypes = {
-  match: PropTypes.any,
-}
+// MoviePage.propTypes = 
+
 
 export default MoviePage;

@@ -1,14 +1,21 @@
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
 
 interface IContainerProps {
   className?: string;
 }
+
+const fadeIn = keyframes`
+  from {opacity: 0.3}
+  to {opacity: 1}
+`;
 
 export const Container = styled.section<IContainerProps>`
   display: none;
   width: 25%;
   padding: 2rem;
   vertical-align: top;
+  animation: ${fadeIn} 0.5s forwards;
 
   @media (max-width: 920px) {
     width: 50%;
@@ -40,9 +47,17 @@ export const About = styled.div`
   text-align: left;
 `;
 
-export const Title = styled.h4`
+export const Title = styled(Link)`
+  text-decoration: none;
+  color: #eaeaea;
   font-size: 1.5em;
   font-weight: 500;
+  transition: 0.4s;
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
+  }
 `;
 
 export const Category = styled.p`

@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Heading, Title, EllipsePulsing } from './styles';
 
 function CatalogHeader() {
+
   return (
     <Container>
       <Heading>

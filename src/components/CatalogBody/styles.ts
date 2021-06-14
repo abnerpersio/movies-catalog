@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 export const Container = styled.section`
   width: 100%;
@@ -20,7 +19,7 @@ export const Select = styled.select`
   border: 2px solid #2e2d31;
   border-radius: 4px;
   color: #eaeaea;
-  padding: 0.5rem 1.2rem;
+  padding: 5px 10px;
   font-weight: 600;
   font-size: 1em;
 
@@ -35,19 +34,38 @@ export const DarkButton = styled.button`
   border: 2px solid #2e2d31;
   border-radius: 4px;
   color: #eaeaea;
-  padding: 0.5rem 1.2rem;
+  padding: 5px 10px;
   font-weight: 600;
   font-size: 1em;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+
+  & svg {
+    display: inline-block;
+    width: 1.5em;
+  }
+
+  & span {
+    display: inline-block;
+  }
 
   @media (max-width: 480px) {
     display: none;
   }
 `;
 
-export const Button = styled.button`
+interface IButton {
+  children?: string;
+  active?: boolean;
+  onClick?: Function;
+}
+
+export const Button = styled.button<IButton>`
   border: none;
-  padding: 0.5rem 1.2rem;
+  padding: 5px 10px;
   background: linear-gradient(180deg, #fe3189 0%, #fe3189 100%), #fe3189;
   box-shadow: 0px 0px 6px #ff0772;
   border: 1px solid #fe3189;
@@ -57,6 +75,10 @@ export const Button = styled.button`
   font-size: 1em;
   transition: 0.6s;
   cursor: pointer;
+
+  &.active {
+    background: transparent !important;
+  }
 
   &:hover {
     background: #ff0772;
@@ -73,10 +95,6 @@ export const CenterButton = styled(Button)`
     color: #fe3189;
   }
 `;
-
-CenterButton.propTypes = {
-  onClick: PropTypes.func,
-};
 
 export const MoviesList = styled.div`
   margin-top: 45px;
