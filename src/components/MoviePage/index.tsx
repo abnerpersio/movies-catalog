@@ -16,7 +16,7 @@ function MoviePage({ match }: RouteComponentProps<{ movieId?: string }>) {
   const { movieId } = match.params;
 
   const getMovie = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

@@ -15,8 +15,6 @@ function MovieHeader(props: InferProps<typeof MovieHeader.propTypes>) {
     return <span>{`${getCategoriesName[0]}`}</span>
   }
 
-  console.log(props?.movie?.categories)
-
   let categories;
 
   if(props.movie?.categories) {

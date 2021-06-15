@@ -17,22 +17,22 @@ interface IDataContext {
 
 const DataContext = createContext<IDataContext>({});
 
-const genres: IGenre[] = [
+const genres: IGenre[] =  [
   {
     "id": 28,
-    "name": "Action"
+    "name": "Ação"
   },
   {
     "id": 12,
-    "name": "Adventure"
+    "name": "Aventura"
   },
   {
     "id": 16,
-    "name": "Animation"
+    "name": "Animação"
   },
   {
     "id": 35,
-    "name": "Comedy"
+    "name": "Comédia"
   },
   {
     "id": 80,
@@ -40,7 +40,7 @@ const genres: IGenre[] = [
   },
   {
     "id": 99,
-    "name": "Documentary"
+    "name": "Documentário"
   },
   {
     "id": 18,
@@ -48,27 +48,27 @@ const genres: IGenre[] = [
   },
   {
     "id": 10751,
-    "name": "Family"
+    "name": "Família"
   },
   {
     "id": 14,
-    "name": "Fantasy"
+    "name": "Fantasia"
   },
   {
     "id": 36,
-    "name": "History"
+    "name": "História"
   },
   {
     "id": 27,
-    "name": "Horror"
+    "name": "Terror"
   },
   {
     "id": 10402,
-    "name": "Music"
+    "name": "Música"
   },
   {
     "id": 9648,
-    "name": "Mystery"
+    "name": "Mistério"
   },
   {
     "id": 10749,
@@ -76,11 +76,11 @@ const genres: IGenre[] = [
   },
   {
     "id": 878,
-    "name": "Science Fiction"
+    "name": "Ficção científica"
   },
   {
     "id": 10770,
-    "name": "TV Movie"
+    "name": "Cinema TV"
   },
   {
     "id": 53,
@@ -88,21 +88,20 @@ const genres: IGenre[] = [
   },
   {
     "id": 10752,
-    "name": "War"
+    "name": "Guerra"
   },
   {
     "id": 37,
-    "name": "Western"
+    "name": "Faroeste"
   }
 ]
-
 function DataProvider(props: InferProps<typeof DataProvider.propTypes>) {
   const [catalogMovies, setCatalogMovies] = useState<any[]>([]);
   const [popularMovies, setPopularMovies] = useState<[]>([]);
   const [page, setPage] = useState(1);
 
   const getCatalogMovies = useCallback(async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?page=${page}`, {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?page=${page}&language=pt-BR`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -118,7 +117,7 @@ function DataProvider(props: InferProps<typeof DataProvider.propTypes>) {
   }
   
   const getNextPageData = useCallback(async (page) => {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?page=${page}`, {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?page=${page}&language=pt-BR`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -131,7 +130,7 @@ function DataProvider(props: InferProps<typeof DataProvider.propTypes>) {
   }, []);
   
   const getPopularMovies = useCallback(async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day`, {
+    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?language=pt-BR`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

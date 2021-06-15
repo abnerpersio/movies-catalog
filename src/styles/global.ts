@@ -21,4 +21,20 @@ export default createGlobalStyle`
 
     font-family: 'Poppins', sans-serif;
   }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #212125;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #9F9FA0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #000000;
+  }
 `;

@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import PropTypes, { InferProps } from 'prop-types'
-import { Link } from 'react-router-dom'
-import { Container, Image, About, Title, Category, Rating } from './styles';
+import { Card, Image, About, Title, Category, Rating } from './styles';
 
 import { DataContext } from '../../context/DataContext'
+
 import { ReactComponent as StarSVG } from '../../images/star.svg'
 
-function CarouselItem(props: InferProps<typeof CarouselItem.propTypes>) {
+function ResultCard(props: InferProps<typeof ResultCard.propTypes>) {
   const { genres } = useContext(DataContext);
-  
+
   function renderCategories(categories:number[]) {
     const getCategoriesName = categories.map((category) => {
       const genre = genres?.find((genre) => genre.id === category)
@@ -20,15 +20,13 @@ function CarouselItem(props: InferProps<typeof CarouselItem.propTypes>) {
 
 
   return (
-    <Container className={props.active ? 'active' : 'inactive'} >
-      <Link to={`/filme/${props.id}`}>
-        <Image src={`https://image.tmdb.org/t/p/w500${props.image}`} />
-      </Link>
-
+    <Card to={`/filme/${props.id}`}>
+      <Image src={`https://image.tmdb.org/t/p/w500${props.image}`} />
       <About>
-        <Title to={`/filme/${props.id}`}>
-          {`${props.title.substring(0, 10)}${props.title.length >= 10 ? '...' : ''}`}
+        <Title>
+          {props.title}
         </Title>
+
         <Category>
           {renderCategories(props.categories)}
         </Category>
@@ -38,17 +36,16 @@ function CarouselItem(props: InferProps<typeof CarouselItem.propTypes>) {
           <p>{props.rating}</p>
         </Rating>
       </About>
-    </Container>
+    </Card>
   )
 }
 
-CarouselItem.propTypes = {
+ResultCard.propTypes = {
   id: PropTypes.number.isRequired,
-  active: PropTypes.bool,
   image: PropTypes.string.isRequired, 
   title: PropTypes.string.isRequired,
-  categories: PropTypes.array.isRequired,
   rating: PropTypes.number.isRequired,
+  categories: PropTypes.array.isRequired,
 }
 
-export default CarouselItem;
+export default ResultCard;

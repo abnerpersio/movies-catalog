@@ -5,6 +5,7 @@ import { ReactComponent as ChevronFrontSVG } from '../../images/chevron-front.sv
 
 export const Container = styled.section`
   margin: 0 auto;
+  padding: 0 1.5rem;
   max-width: 1000px;
   position: relative;
 `;
@@ -17,7 +18,7 @@ export const ChevronBackIcon = styled(ChevronBackSVG)`
   left: 0px;
   transition: 0.5s;
   cursor: pointer;
-  z-index: 100;
+  z-index: 10;
 
   &:hover {
     transform: scaleY(1.25);
@@ -36,7 +37,7 @@ export const ChevronFrontIcon = styled(ChevronFrontSVG)`
   right: 0px;
   transition: 0.5s;
   cursor: pointer;
-  z-index: 100;
+  z-index: 10;
 
   &:hover {
     transform: scaleY(1.25);

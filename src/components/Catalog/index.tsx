@@ -6,7 +6,7 @@ import CatalogBody from '../CatalogBody'
 
 function Catalog() {
   return (
-    <Container  >
+    <Container id='catalog' >
       <CatalogHeader />
       <CatalogBody />
     </Container>

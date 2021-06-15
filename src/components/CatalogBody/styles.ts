@@ -12,6 +12,14 @@ export const FilterBar = styled.div`
   display: flex;
   justify-content: flex-start;
   column-gap: 20px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    row-gap: 25px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem;
+  }
 `;
 
 export const Select = styled.select`

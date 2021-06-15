@@ -7,6 +7,7 @@ import Theather from '../../images/theather.png';
 export const Container = styled.section`
   padding: 1rem;
   padding-bottom: 8rem;
+  padding-top: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

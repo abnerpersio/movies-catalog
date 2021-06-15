@@ -52,6 +52,10 @@ export const Image = styled.img`
   }
 
   @media (max-width: 480px) {
+    &.list-display {
+      width: 100%;
+    }
+
     padding: 1rem;
     width: 100%;
   }

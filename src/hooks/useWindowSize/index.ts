@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useMinWidth = (size: number): boolean | undefined => {
   const [isMinWidth, setisMinWidth] = useState<boolean | undefined>(undefined);

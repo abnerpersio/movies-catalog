@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <BrowserRouter>
+      <BrowserRouter forceRefresh={true}>
         <Switch>
 
           <Route exact path={['/', '/home']} component={Home}  />
