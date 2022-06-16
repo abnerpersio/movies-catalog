@@ -1,4 +1,4 @@
-# Suno Movies
+# Movies Catalog
 
 
 Projeto baseado em filmes inspirado em uma layout do [Figma](https://www.figma.com/file/V1Qfp19RorvXZI1qshlLGL/Suno-Movies?node-id=0%3A1) e utilizando a API do [MovieDB](https://developers.themoviedb.org/4/getting-started) como base.
