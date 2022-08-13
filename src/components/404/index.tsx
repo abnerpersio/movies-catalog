@@ -1,8 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'  
-
-import Lottie from 'react-lottie';
-import animation from '../../images/404-animation.json';
+import React from 'react';
+import styled from 'styled-components';
 
 const Container = styled.section`
   padding: 1rem;
@@ -15,28 +12,11 @@ const Container = styled.section`
 `;
 
 function ErrorPage() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true, 
-    animationData: animation,
-  };
-
   return (
     <Container>
-
       <h3 style={{ textAlign: 'center' }}>Oops, Filme não encontrado!</h3>
-
-       <Lottie 
-        style={{
-          maxWidth: '400px',
-        }}
-        options={defaultOptions}
-        isStopped={false}
-        isPaused={false}
-      />
-      
     </Container>
-  )
+  );
 }
 
 export default ErrorPage;
