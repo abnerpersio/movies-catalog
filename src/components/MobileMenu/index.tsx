@@ -1,26 +1,22 @@
-import React from 'react';
-import PropTypes, { InferProps } from 'prop-types';
 import { Overlay, Container, Section, MenuLink, LinkWithScroll } from './styles';
 
-function MobileMenu(props: InferProps<typeof MobileMenu.propTypes>) {
+type Props = {
+  onToggleMenu: () => void;
+};
+
+export default function MobileMenu({ onToggleMenu }: Props) {
   return (
     <Overlay>
-
       <Container>
-
         <Section>
-          <MenuLink 
-            onClick={props.onToggleMenu}
-            to="/"
-            activeClassName="active" 
-          >
+          <MenuLink onClick={onToggleMenu} to="/" activeClassName="active">
             INÍCIO
           </MenuLink>
         </Section>
 
         <Section>
-          <LinkWithScroll 
-            onClick={props.onToggleMenu}
+          <LinkWithScroll
+            onClick={onToggleMenu}
             to="catalog"
             spy={true}
             smooth={true}
@@ -30,15 +26,7 @@ function MobileMenu(props: InferProps<typeof MobileMenu.propTypes>) {
             CATÁLOGO
           </LinkWithScroll>
         </Section>
-        
       </Container>
-
     </Overlay>
-  ) 
+  );
 }
-
-MobileMenu.propTypes = {
-  onToggleMenu: PropTypes.func.isRequired
-}
-
-export default MobileMenu;

@@ -1,72 +1,81 @@
-import React from 'react';
-import PropTypes, { InferProps } from 'prop-types';
-import { Container, MenuLink, LinkWithScroll, NavSection, Section, MenuIcon, SearchIcon, TextLogo } from './styles';
+import {
+  Container,
+  MenuLink,
+  LinkWithScroll,
+  NavSection,
+  Section,
+  MenuIcon,
+  SearchIcon,
+  TextLogo,
+} from './styles';
 
-import SearchBar from '../Search'
-import MobileMenu from '../MobileMenu'
+import SearchBar from '../Search';
+import MobileMenu from '../MobileMenu';
+import { useTranslation } from 'react-i18next';
 
-function NavBar(props: InferProps<typeof NavBar.propTypes>) {
+type Props = {
+  searchBarActive: boolean;
+  onToggleSearch: () => void;
+};
+
+export function NavBar(props: Props) {
+  const { t } = useTranslation();
+
   function renderSearchBar() {
-    if(props.searchBarActive) {
-      return <SearchBar />
+    if (props.searchBarActive) {
+      return <SearchBar />;
     }
   }
 
   return (
     <Container>
-
       <Section>
         <TextLogo to="/">
-            SUNO <span className="bold">MOVIES</span>
+          SUNO <span className="bold">MOVIES</span>
         </TextLogo>
       </Section>
 
       <NavSection>
-        <MenuLink activeClassName="active" to="/">INÍCIO</MenuLink>
-        <LinkWithScroll 
-          to="catalog"
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={500}
-        >
-          CATÁLOGO
+        <MenuLink activeClassName="active" to="/">
+          {t('menu.home').toUpperCase()}
+        </MenuLink>
+        <LinkWithScroll to="catalog" spy={true} smooth={true} offset={-70} duration={500}>
+          {t('menu.catalog').toUpperCase()}
         </LinkWithScroll>
         <SearchIcon
-          className={props.searchBarActive ? 'active' : 'normal'} 
-          onClick={props.onToggleSearch} 
+          className={props.searchBarActive ? 'active' : 'normal'}
+          onClick={props.onToggleSearch}
         />
         {renderSearchBar()}
       </NavSection>
-      
     </Container>
-  )
-  
+  );
 }
 
-NavBar.propTypes = {
-  searchBarActive: PropTypes.bool.isRequired,
-  onToggleSearch: PropTypes.func.isRequired
-}
+type MobileProps = {
+  menuActive: boolean;
+  searchBarActive: boolean;
+  onToggleSearch: () => void;
+  onToggleMenu: () => void;
+};
 
-function MobileNavBar(props: InferProps<typeof MobileNavBar.propTypes>) {
+export function MobileNavBar(props: MobileProps) {
   function renderSearchBar() {
-    if(props.searchBarActive) {
-      return <SearchBar />
+    if (props.searchBarActive) {
+      return <SearchBar />;
     }
   }
 
   function renderMobileMenu() {
-    if(props.menuActive) {
-      return <MobileMenu onToggleMenu={props.onToggleMenu} />
+    if (props.menuActive) {
+      return <MobileMenu onToggleMenu={props.onToggleMenu} />;
     }
   }
- 
+
   return (
     <Container>
-
       <Section>
-        <MenuIcon 
+        <MenuIcon
           className={props.searchBarActive ? 'active' : 'normal'}
           onClick={props.onToggleMenu}
         />
@@ -75,27 +84,17 @@ function MobileNavBar(props: InferProps<typeof MobileNavBar.propTypes>) {
 
       <Section>
         <TextLogo to="/">
-            SUNO <span className="bold">MOVIES</span>
+          SUNO <span className="bold">MOVIES</span>
         </TextLogo>
       </Section>
 
       <Section>
-        <SearchIcon 
+        <SearchIcon
           className={props.searchBarActive ? 'active' : 'normal'}
-          onClick={props.onToggleSearch} 
+          onClick={props.onToggleSearch}
         />
         {renderSearchBar()}
       </Section>
-      
     </Container>
-  )
+  );
 }
-
-MobileNavBar.propTypes = {
-  menuActive: PropTypes.bool.isRequired,
-  searchBarActive: PropTypes.bool.isRequired,
-  onToggleSearch: PropTypes.func.isRequired,
-  onToggleMenu: PropTypes.func.isRequired
-}
-
-export { MobileNavBar, NavBar };
