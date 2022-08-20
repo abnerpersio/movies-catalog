@@ -4,6 +4,7 @@ import { Container, Image, About, Title, Category, Rating } from './styles';
 
 import { DataContext } from '../../context/DataContext';
 import { ReactComponent as StarSVG } from '../../images/star.svg';
+import { routes } from '../../constants/routes';
 
 type Props = {
   id: number;
@@ -28,12 +29,12 @@ export default function CarouselItem(props: Props) {
 
   return (
     <Container className={props.active ? 'active' : 'inactive'}>
-      <Link to={`/filme/${props.id}`}>
+      <Link to={routes.MOVIE.replace(':id', String(props.id))}>
         <Image src={`https://image.tmdb.org/t/p/w500${props.image}`} />
       </Link>
 
       <About>
-        <Title to={`/filme/${props.id}`}>
+        <Title to={routes.MOVIE.replace(':id', String(props.id))}>
           {`${props.title.substring(0, 10)}${props.title.length >= 10 ? '...' : ''}`}
         </Title>
         <Category>{renderCategories(props.categories)}</Category>

@@ -5,6 +5,7 @@ import GlobalStyle from './styles/global';
 import Home from './components/Home';
 import MoviePage from './components/MoviePage';
 import { ScrollTop } from './components/ScrollTop';
+import { routes } from './constants/routes';
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
         <ScrollTop />
 
         <Switch>
-          <Route exact path={['/', '/home']} component={Home} />
-          <Route path="/filme/:movieId" component={MoviePage} />
+          <Route exact path={[routes.INDEX, routes.HOME]} component={Home} />
+          <Route path={routes.MOVIE} component={MoviePage} />
         </Switch>
       </BrowserRouter>
     </>

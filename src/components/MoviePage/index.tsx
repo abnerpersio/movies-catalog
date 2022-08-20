@@ -9,14 +9,14 @@ import MovieHeader from '../MovieHeader';
 import MovieBody from '../MovieBody';
 import MovieService from '../../services/MovieService';
 
-function MoviePage({ match }: RouteComponentProps<{ movieId?: string }>) {
+function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
   const [movie, setMovie] = useState<any>({});
   const [notFound, setNotFound] = useState<boolean>(false);
-  const { movieId } = match.params;
+  const { id } = match.params;
 
   useEffect(() => {
     async function getMovie() {
-      const { data, status } = await MovieService.getMovie(movieId!);
+      const { data, status } = await MovieService.getMovie(id!);
 
       if (!data || status === 404) {
         setNotFound(true);
@@ -33,7 +33,7 @@ function MoviePage({ match }: RouteComponentProps<{ movieId?: string }>) {
     }
 
     getMovie();
-  }, [movieId]);
+  }, [id]);
 
   return (
     <Container>

@@ -5,6 +5,7 @@ import { Container, Image, About, Title, Description, Category, Rating } from '.
 import { DataContext } from '../../context/DataContext';
 
 import { ReactComponent as StarSVG } from '../../images/star.svg';
+import { routes } from '../../constants/routes';
 
 type Props = {
   viewType?: string;
@@ -30,7 +31,7 @@ export default function MovieCard(props: Props) {
 
   return (
     <Container className={props.viewType === 'list' ? 'list-display' : ''}>
-      <Link to={`/filme/${props.id}`}>
+      <Link to={routes.MOVIE.replace(':id', String(props.id))}>
         <Image
           className={props.viewType === 'list' ? 'list-display' : ''}
           src={`https://image.tmdb.org/t/p/w500${props.image}`}
@@ -38,7 +39,7 @@ export default function MovieCard(props: Props) {
       </Link>
 
       <About>
-        <Title to={`/filme/${props.id}`}>{props.title}</Title>
+        <Title to={routes.MOVIE.replace(':id', String(props.id))}>{props.title}</Title>
 
         <Category>{renderCategories(props.categories)}</Category>
 

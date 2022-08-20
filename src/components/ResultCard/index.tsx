@@ -4,6 +4,7 @@ import { Card, Image, About, Title, Category, Rating } from './styles';
 import { DataContext } from '../../context/DataContext';
 
 import { ReactComponent as StarSVG } from '../../images/star.svg';
+import { routes } from '../../constants/routes';
 
 type Props = {
   id: number;
@@ -26,7 +27,7 @@ export default function ResultCard(props: Props) {
   }
 
   return (
-    <Card to={`/filme/${props.id}`}>
+    <Card to={routes.MOVIE.replace(':id', String(props.id))}>
       <Image src={`https://image.tmdb.org/t/p/w500${props.image}`} />
       <About>
         <Title>{props.title}</Title>
