@@ -1,9 +1,11 @@
 import { Container } from './styles';
 
 function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <Container>
-      <span>© 2021 Suno Movies. All rights reserved.</span>
+      <span>© {year} Movies Catalog. All rights reserved.</span>
     </Container>
   );
 }

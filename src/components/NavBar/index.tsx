@@ -31,7 +31,7 @@ export function NavBar(props: Props) {
     <Container>
       <Section>
         <TextLogo to="/">
-          SUNO <span className="bold">MOVIES</span>
+          MOVIES <span className="bold">CATALOG</span>
         </TextLogo>
       </Section>
 
@@ -84,7 +84,7 @@ export function MobileNavBar(props: MobileProps) {
 
       <Section>
         <TextLogo to="/">
-          SUNO <span className="bold">MOVIES</span>
+          MOVIES <span className="bold">CATALOG</span>
         </TextLogo>
       </Section>
 
