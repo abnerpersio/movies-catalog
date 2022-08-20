@@ -1,9 +1,8 @@
+import CatalogBody from '../CatalogBody';
+import CatalogHeader from '../CatalogHeader';
 import { Container } from './styles';
 
-import CatalogHeader from '../CatalogHeader';
-import CatalogBody from '../CatalogBody';
-
-function Catalog() {
+export function Catalog() {
   return (
     <Container id="catalog">
       <CatalogHeader />
@@ -11,5 +10,3 @@ function Catalog() {
     </Container>
   );
 }
-
-export default Catalog;

@@ -4,7 +4,7 @@ import { Container } from './styles';
 
 import { MobileNavBar, NavBar } from '../NavBar';
 
-function Header() {
+export function Header() {
   const [searchBarActive, setSearchBarActive] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
 
@@ -37,5 +37,3 @@ function Header() {
     </Container>
   );
 }
-
-export default Header;

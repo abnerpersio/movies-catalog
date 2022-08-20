@@ -1,20 +1,19 @@
 import { useContext, useState } from 'react';
-import {
-  Container,
-  FilterBar,
-  Select,
-  Button,
-  CenterButton,
-  DarkButton,
-  MoviesList,
-} from './styles';
-
-import MovieCard from '../MovieCard';
-import { ReactComponent as ListSVG } from '../../images/list.svg';
-import { ReactComponent as GridSVG } from '../../images/grid.svg';
+import { useTranslation } from 'react-i18next';
 
 import { DataContext } from '../../context/DataContext';
-import { useTranslation } from 'react-i18next';
+import { ReactComponent as GridSVG } from '../../images/grid.svg';
+import { ReactComponent as ListSVG } from '../../images/list.svg';
+import MovieCard from '../MovieCard';
+import {
+  Button,
+  CenterButton,
+  Container,
+  DarkButton,
+  FilterBar,
+  MoviesList,
+  Select,
+} from './styles';
 
 interface IFilterByGenre {
   filter: boolean;
@@ -37,7 +36,7 @@ function CatalogBody() {
 
     if (filterByGenre.filter) {
       filteredMovies = catalogMovies?.filter(
-        (movie) => movie.genre_ids.indexOf(filterByGenre.genre) > -1
+        (movie) => movie.genre_ids.indexOf(filterByGenre.genre) > -1,
       );
     }
 
@@ -119,11 +118,7 @@ function CatalogBody() {
 
       <MoviesList>{renderCatalog()}</MoviesList>
 
-      <CenterButton
-        onClick={() => {
-          return onNextPage ? onNextPage() : false;
-        }}
-      >
+      <CenterButton onClick={() => (onNextPage ? onNextPage() : false)}>
         {t('titles.load_more')}
       </CenterButton>
     </Container>

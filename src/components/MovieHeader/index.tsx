@@ -24,7 +24,7 @@ type Props = {
   };
 };
 
-export default function MovieHeader(props: Props) {
+export function MovieHeader(props: Props) {
   const { t } = useTranslation();
 
   function renderCategories(categories: Genre[]) {

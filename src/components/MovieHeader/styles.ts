@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Theather from "../../images/theather.png";
+import Theather from '../../images/theather.png';
 
 export const Container = styled.section`
   padding-bottom: 2rem;

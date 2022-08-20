@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+
 import { API_TOKEN } from '../constants/app';
 
 type Params = {
@@ -27,7 +28,7 @@ export class HttpClient {
   post<T = Record<string, unknown>>(
     url: string,
     data?: Record<string, unknown>,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ) {
     return this.axios.post<T>(url, data, config);
   }

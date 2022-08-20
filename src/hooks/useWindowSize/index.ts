@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react';
 
 export const useMinWidth = (size: number): boolean | undefined => {
   const [isMinWidth, setisMinWidth] = useState<boolean | undefined>(undefined);
@@ -8,9 +8,9 @@ export const useMinWidth = (size: number): boolean | undefined => {
       setisMinWidth(window.innerWidth > size);
     }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     handleResize();
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [size]);
 
   return isMinWidth;
@@ -24,9 +24,9 @@ export const useMaxWidth = (size: number): boolean | undefined => {
       setMaxWidth(window.innerWidth < size);
     }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     handleResize();
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [size]);
 
   return isMaxWidth;

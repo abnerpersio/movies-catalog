@@ -2,11 +2,11 @@ import { useState, useEffect, useContext } from 'react';
 import { useMaxWidth } from '../../hooks/useWindowSize';
 import { Container, ChevronBackIcon, ChevronFrontIcon } from './styles';
 
-import CarouselItem from '../CarouselItem';
+import { CarouselItem } from '../CarouselItem';
 
 import { DataContext } from '../../context/DataContext';
 
-function Carousel() {
+export function Carousel() {
   const { popularMovies } = useContext(DataContext);
   const [carouselDisplay, setCarouselDisplay] = useState<number[]>([]);
   const isMobileSize = useMaxWidth(480);
@@ -66,5 +66,3 @@ function Carousel() {
     </Container>
   );
 }
-
-export default Carousel;

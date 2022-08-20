@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Image, About, Title, Category, Rating } from './styles';
 
+import { routes } from '../../constants/routes';
 import { DataContext } from '../../context/DataContext';
 import { ReactComponent as StarSVG } from '../../images/star.svg';
-import { routes } from '../../constants/routes';
+import { About, Category, Container, Image, Rating, Title } from './styles';
 
 type Props = {
   id: number;
@@ -15,12 +15,12 @@ type Props = {
   rating: number;
 };
 
-export default function CarouselItem(props: Props) {
+export function CarouselItem(props: Props) {
   const { genres } = useContext(DataContext);
 
   function renderCategories(categories: number[]) {
     const getCategoriesName = categories.map((category) => {
-      const genre = genres?.find((genre) => genre.id === category);
+      const genre = genres?.find(({ id }) => id === category);
       return genre?.name;
     });
 

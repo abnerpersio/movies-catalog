@@ -1,9 +1,9 @@
 import { Container, Heading, Title, EllipsePulsing } from './styles';
 
-import Carousel from '../Carousel';
+import { Carousel } from '../Carousel';
 import { useTranslation } from 'react-i18next';
 
-function Releases() {
+export function Releases() {
   const { t } = useTranslation();
 
   return (
@@ -20,5 +20,3 @@ function Releases() {
     </Container>
   );
 }
-
-export default Releases;

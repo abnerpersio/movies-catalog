@@ -7,7 +7,7 @@ import MoviePage from './pages/MoviePage';
 import { ScrollTop } from './components/ScrollTop';
 import { routes } from './constants/routes';
 
-function App() {
+export function App() {
   return (
     <>
       <GlobalStyle />
@@ -22,5 +22,3 @@ function App() {
     </>
   );
 }
-
-export default App;

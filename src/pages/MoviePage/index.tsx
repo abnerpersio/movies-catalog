@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { Container, Section, Button } from './styles';
-
-import ErrorPage from '../../components/404';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import MovieHeader from '../../components/MovieHeader';
-import MovieBody from '../../components/MovieBody';
-import MovieService from '../../services/MovieService';
-import { routes } from '../../constants/routes';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { RouteComponentProps } from 'react-router-dom';
+
+import { ErrorPage } from '../../components/404';
+import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
+import { MovieBody } from '../../components/MovieBody';
+import { MovieHeader } from '../../components/MovieHeader';
+import { routes } from '../../constants/routes';
+import MovieService from '../../services/MovieService';
+import { Button, Container, Section } from './styles';
 
 function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
   const { t } = useTranslation();

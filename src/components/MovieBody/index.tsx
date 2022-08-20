@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Container, Heading } from './styles';
 
-function MovieBody() {
+export function MovieBody() {
   const { t } = useTranslation();
 
   return (
@@ -12,5 +12,3 @@ function MovieBody() {
     </Container>
   );
 }
-
-export default MovieBody;

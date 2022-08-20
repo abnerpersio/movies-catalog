@@ -15,7 +15,7 @@ const Container = styled.section`
   }
 `;
 
-function ErrorPage() {
+export function ErrorPage() {
   const { t } = useTranslation();
 
   return (
@@ -24,5 +24,3 @@ function ErrorPage() {
     </Container>
   );
 }
-
-export default ErrorPage;

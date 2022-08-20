@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Container } from './styles';
 
-function Footer() {
+export function Footer() {
   const { t } = useTranslation();
   const year = new Date().getFullYear();
 
@@ -13,5 +13,3 @@ function Footer() {
     </Container>
   );
 }
-
-export default Footer;
