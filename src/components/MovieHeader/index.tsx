@@ -12,6 +12,7 @@ import {
 
 import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { Genre } from '../../types/movies';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   movie: {
@@ -24,6 +25,8 @@ type Props = {
 };
 
 export default function MovieHeader(props: Props) {
+  const { t } = useTranslation();
+
   function renderCategories(categories: Genre[]) {
     const getCategoriesName = categories.map((category) => category.name);
     return <span>{`${getCategoriesName[0]}`}</span>;
@@ -37,7 +40,7 @@ export default function MovieHeader(props: Props) {
 
   return (
     <Container>
-      {props.movie ? (
+      {props.movie && (
         <MovieSection>
           <Image src={`https://image.tmdb.org/t/p/w500${props.movie.image}`} />
 
@@ -54,14 +57,14 @@ export default function MovieHeader(props: Props) {
             </HalfSection>
 
             <Description>
-              <span>Sinopse</span>
+              <span>{t('titles.synopsis')}</span>
               {props.movie.description}
             </Description>
           </About>
         </MovieSection>
-      ) : (
-        <p>carregando...</p>
       )}
+
+      {!props.movie && <p>{t('titles.loading')}</p>}
     </Container>
   );
 }

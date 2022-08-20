@@ -21,32 +21,27 @@ type Props = {
 export function NavBar(props: Props) {
   const { t } = useTranslation();
 
-  function renderSearchBar() {
-    if (props.searchBarActive) {
-      return <SearchBar />;
-    }
-  }
-
   return (
     <Container>
       <Section>
         <TextLogo to="/">
-          MOVIES <span className="bold">CATALOG</span>
+          {t('project.first_name').toUpperCase()}{' '}
+          <span className="bold">{t('project.second_name').toUpperCase()}</span>
         </TextLogo>
       </Section>
 
       <NavSection>
         <MenuLink activeClassName="active" to="/">
-          {t('menu.home').toUpperCase()}
+          {t('titles.menu.home').toUpperCase()}
         </MenuLink>
         <LinkWithScroll to="catalog" spy={true} smooth={true} offset={-70} duration={500}>
-          {t('menu.catalog').toUpperCase()}
+          {t('titles.menu.catalog').toUpperCase()}
         </LinkWithScroll>
         <SearchIcon
           className={props.searchBarActive ? 'active' : 'normal'}
           onClick={props.onToggleSearch}
         />
-        {renderSearchBar()}
+        {props.searchBarActive && <SearchBar />}
       </NavSection>
     </Container>
   );
@@ -60,17 +55,7 @@ type MobileProps = {
 };
 
 export function MobileNavBar(props: MobileProps) {
-  function renderSearchBar() {
-    if (props.searchBarActive) {
-      return <SearchBar />;
-    }
-  }
-
-  function renderMobileMenu() {
-    if (props.menuActive) {
-      return <MobileMenu onToggleMenu={props.onToggleMenu} />;
-    }
-  }
+  const { t } = useTranslation();
 
   return (
     <Container>
@@ -79,12 +64,13 @@ export function MobileNavBar(props: MobileProps) {
           className={props.searchBarActive ? 'active' : 'normal'}
           onClick={props.onToggleMenu}
         />
-        {renderMobileMenu()}
+        {props.menuActive && <MobileMenu onToggleMenu={props.onToggleMenu} />}
       </Section>
 
       <Section>
         <TextLogo to="/">
-          MOVIES <span className="bold">CATALOG</span>
+          {t('project.first_name').toUpperCase()}{' '}
+          <span className="bold">{t('project.second_name').toUpperCase()}</span>
         </TextLogo>
       </Section>
 
@@ -93,7 +79,7 @@ export function MobileNavBar(props: MobileProps) {
           className={props.searchBarActive ? 'active' : 'normal'}
           onClick={props.onToggleSearch}
         />
-        {renderSearchBar()}
+        {props.searchBarActive && <SearchBar />}
       </Section>
     </Container>
   );

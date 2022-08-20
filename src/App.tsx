@@ -2,8 +2,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import GlobalStyle from './styles/global';
 
-import Home from './components/Home';
-import MoviePage from './components/MoviePage';
+import Home from './pages/Home';
+import MoviePage from './pages/MoviePage';
 import { ScrollTop } from './components/ScrollTop';
 import { routes } from './constants/routes';
 

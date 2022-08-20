@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+import { routes } from '../../constants/routes';
 import { Overlay, Container, Section, MenuLink, LinkWithScroll } from './styles';
 
 type Props = {
@@ -5,12 +7,14 @@ type Props = {
 };
 
 export default function MobileMenu({ onToggleMenu }: Props) {
+  const { t } = useTranslation();
+
   return (
     <Overlay>
       <Container>
         <Section>
-          <MenuLink onClick={onToggleMenu} to="/" activeClassName="active">
-            INÍCIO
+          <MenuLink onClick={onToggleMenu} to={routes.HOME} activeClassName="active">
+            {t('titles.menu.home').toUpperCase()}
           </MenuLink>
         </Section>
 
@@ -23,7 +27,7 @@ export default function MobileMenu({ onToggleMenu }: Props) {
             offset={-70}
             duration={500}
           >
-            CATÁLOGO
+            {t('titles.menu.catalog').toUpperCase()}
           </LinkWithScroll>
         </Section>
       </Container>

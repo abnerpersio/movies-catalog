@@ -14,6 +14,7 @@ import { ReactComponent as ListSVG } from '../../images/list.svg';
 import { ReactComponent as GridSVG } from '../../images/grid.svg';
 
 import { DataContext } from '../../context/DataContext';
+import { useTranslation } from 'react-i18next';
 
 interface IFilterByGenre {
   filter: boolean;
@@ -21,6 +22,7 @@ interface IFilterByGenre {
 }
 
 function CatalogBody() {
+  const { t } = useTranslation();
   const { catalogMovies, onNextPage, genres } = useContext(DataContext);
 
   const [filterByGenre, setFilterByGenre] = useState<IFilterByGenre>({
@@ -89,27 +91,27 @@ function CatalogBody() {
       <FilterBar>
         <Select
           onChange={(e) => handleFilterByCategory(e.target.value)}
-          placeholder="por gênero"
-          defaultValue="first"
+          placeholder={t('titles.placeholder.by_gender')}
+          defaultValue=""
         >
-          <option disabled value="first">
-            por gênero
+          <option disabled value="">
+            {t('titles.placeholder.by_gender')}
           </option>
           {renderCategories()}
         </Select>
 
         <Button className={orderByPopular ? 'active' : ''} onClick={handleOrderByPopular}>
-          mais populares
+          {t('titles.populars')}
         </Button>
 
         <DarkButton onClick={handleChangeView}>
           {viewType === 'list' ? (
             <>
-              <ListSVG /> <span>em lista</span>
+              <ListSVG /> <span>{t('titles.list_view')}</span>
             </>
           ) : (
             <>
-              <GridSVG /> <span>em grid</span>
+              <GridSVG /> <span>{t('titles.grid_view')}</span>
             </>
           )}
         </DarkButton>
@@ -122,7 +124,7 @@ function CatalogBody() {
           return onNextPage ? onNextPage() : false;
         }}
       >
-        carregar mais
+        {t('titles.load_more')}
       </CenterButton>
     </Container>
   );

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 const Container = styled.section`
@@ -8,12 +9,18 @@ const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+
+  h3 {
+    text-align: center;
+  }
 `;
 
 function ErrorPage() {
+  const { t } = useTranslation();
+
   return (
     <Container>
-      <h3 style={{ textAlign: 'center' }}>Oops, Filme não encontrado!</h3>
+      <h3>{t('titles.errors.movie_not_found')}</h3>
     </Container>
   );
 }
