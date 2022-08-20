@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { ReactComponent as ChevronBackSVG } from '../../images/chevron-back.svg';
-import { ReactComponent as ChevronFrontSVG } from '../../images/chevron-front.svg';
+import { ReactComponent as ChevronBackSVG } from "../../images/chevron-back.svg";
+import { ReactComponent as ChevronFrontSVG } from "../../images/chevron-front.svg";
 
 export const Container = styled.section`
   margin: 0 auto;

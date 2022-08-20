@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const Card = styled(Link)`
   text-decoration: none;
@@ -11,13 +11,13 @@ export const Card = styled(Link)`
   border: 1px solid #313136;
   border-radius: 4px;
   padding: 1.5rem;
-  margin: .6rem 0.5rem;
+  margin: 0.6rem 0.5rem;
   cursor: pointer;
-  transition: .8s;
+  transition: 0.8s;
 
   &:hover {
     border: 1px solid #eaeaea;
-    transform: scale(.98)
+    transform: scale(0.98);
   }
 
   @media (max-width: 800px) {

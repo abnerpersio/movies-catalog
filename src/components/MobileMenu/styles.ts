@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Link as ScrollLink } from 'react-scroll';
-import { NavLink } from 'react-router-dom';
+import { Link as ScrollLink } from "react-scroll";
+import { NavLink } from "react-router-dom";
 
 export const Overlay = styled.div`
   position: fixed;

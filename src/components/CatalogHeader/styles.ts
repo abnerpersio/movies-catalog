@@ -1,6 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-import { ReactComponent as EllipseSVG } from '../../images/ellipse.svg';
+import { ReactComponent as EllipseSVG } from "../../images/ellipse.svg";
 
 export const Container = styled.section`
   width: 100%;

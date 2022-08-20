@@ -1,8 +1,8 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-import { ReactComponent as EllipseSVG } from '../../images/ellipse.svg';
+import { ReactComponent as EllipseSVG } from "../../images/ellipse.svg";
 
-import Theather from '../../images/theather.png';
+import Theather from "../../images/theather.png";
 
 export const Container = styled.section`
   padding: 1rem;

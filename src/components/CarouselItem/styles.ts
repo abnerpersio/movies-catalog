@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 
 interface IContainerProps {
   className?: string;

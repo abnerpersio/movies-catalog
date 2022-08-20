@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Link as ScrollLink } from 'react-scroll';
-import { Link, NavLink } from 'react-router-dom';
-import { ReactComponent as MenuSVG } from '../../images/menu.svg';
-import { ReactComponent as SearchSVG } from '../../images/search.svg';
+import { Link as ScrollLink } from "react-scroll";
+import { Link, NavLink } from "react-router-dom";
+import { ReactComponent as MenuSVG } from "../../images/menu.svg";
+import { ReactComponent as SearchSVG } from "../../images/search.svg";
 
 export const Container = styled.header`
   display: flex;
@@ -81,7 +81,7 @@ export const MenuLink = styled(NavLink)`
 
   &:after {
     display: block;
-    content: '';
+    content: "";
     border-bottom: solid 3px transparent;
     margin-top: 1.6rem;
     margin-bottom: -1.6rem;
@@ -112,7 +112,7 @@ export const LinkWithScroll = styled(ScrollLink)`
 
   &:after {
     display: block;
-    content: '';
+    content: "";
     border-bottom: solid 3px transparent;
     margin-top: 1.6rem;
     margin-bottom: -1.6rem;
