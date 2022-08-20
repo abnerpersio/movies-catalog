@@ -7,39 +7,33 @@ import Header from '../Header';
 import Footer from '../Footer';
 import MovieHeader from '../MovieHeader';
 import MovieBody from '../MovieBody';
-
-const token =
-  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxY2E2MDc5ZDM3N2JhMGExODU4MDc3YWZjMDVkZDFmMyIsInN1YiI6IjYwYzQ0NDI2ZDA0ZDFhMDAyOTk1MTI1YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.p3mk4AJk_5nt7Lor-qi1byDdi4LwUaS0hZiLvz98AyA';
+import MovieService from '../../services/MovieService';
 
 function MoviePage({ match }: RouteComponentProps<{ movieId?: string }>) {
   const [movie, setMovie] = useState<any>({});
   const [notFound, setNotFound] = useState<boolean>(false);
   const { movieId } = match.params;
 
-  const getMovie = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  useEffect(() => {
+    async function getMovie() {
+      const { data, status } = await MovieService.getMovie(movieId!);
 
-    if (response.status === 404) {
-      setNotFound(true);
+      if (!data || status === 404) {
+        setNotFound(true);
+        return;
+      }
+
+      setMovie({
+        image: data.poster_path,
+        title: data.title,
+        description: data.overview,
+        categories: data.genres,
+        rating: data.vote_average,
+      });
     }
 
-    const json = await response.json();
-    setMovie({
-      image: json?.poster_path,
-      title: json?.title,
-      description: json?.overview,
-      categories: json?.genres,
-      rating: json?.vote_average,
-    });
-  };
-
-  useEffect(() => {
     getMovie();
-  }, []);
+  }, [movieId]);
 
   return (
     <Container>

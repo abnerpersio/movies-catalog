@@ -11,11 +11,7 @@ import {
 } from './styles';
 
 import { ReactComponent as StarSVG } from '../../images/star.svg';
-
-type Genre = {
-  id: number;
-  name: string;
-};
+import { Genre } from '../../types/movies';
 
 type Props = {
   movie: {
