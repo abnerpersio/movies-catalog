@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import { ReactNode, createContext, useCallback, useEffect, useMemo, useState } from 'react';
+
 import MovieService from '../services/MovieService';
 import { Genre, Movie } from '../types/movies';
 
@@ -6,7 +7,7 @@ interface IDataContext {
   catalogMovies?: any[];
   popularMovies?: any[];
   genres?: Genre[];
-  onNextPage?: Function;
+  onNextPage?: () => void;
 }
 
 export const DataContext = createContext<IDataContext>({});
@@ -119,16 +120,15 @@ export function DataProvider({ children }: Props) {
 
   const handleNextPage = useCallback(() => setPage((prevState) => prevState + 1), []);
 
-  return (
-    <DataContext.Provider
-      value={{
-        genres,
-        catalogMovies: catalog,
-        popularMovies,
-        onNextPage: handleNextPage,
-      }}
-    >
-      {children}
-    </DataContext.Provider>
+  const value = useMemo(
+    () => ({
+      genres,
+      catalogMovies: catalog,
+      popularMovies,
+      onNextPage: handleNextPage,
+    }),
+    [catalog, popularMovies, handleNextPage],
   );
+
+  return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }

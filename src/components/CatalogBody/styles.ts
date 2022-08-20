@@ -65,13 +65,13 @@ export const DarkButton = styled.button`
   }
 `;
 
-interface IButton {
+type ButtonParams = {
   children?: string;
   active?: boolean;
-  onClick?: Function;
-}
+  onClick?: () => void;
+};
 
-export const Button = styled.button<IButton>`
+export const Button = styled.button<ButtonParams>`
   border: none;
   padding: 5px 10px;
   background: linear-gradient(180deg, #fe3189 0%, #fe3189 100%), #fe3189;

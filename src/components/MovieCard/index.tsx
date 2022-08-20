@@ -16,38 +16,37 @@ type Props = {
   rating: number;
 };
 
-export function MovieCard(props: Props) {
+export function MovieCard({ viewType, id, image, title, categories, description, rating }: Props) {
   const { genres } = useContext(DataContext);
 
-  function renderCategories(categories: number[]) {
-    const getCategoriesName = categories.map((category) => {
-      const genre = genres?.find((genre) => genre.id === category);
-      return genre?.name;
-    });
+  function renderCategories() {
+    const categoriesName = categories
+      .map((category) => genres?.find(({ id: categoryId }) => categoryId === category)?.name)
+      .filter(Boolean);
 
-    return <span>{`${getCategoriesName.slice(0, 2)}`}</span>;
+    return <span>{`${categoriesName.slice(0, 2)}`}</span>;
   }
 
   return (
-    <Container className={props.viewType === 'list' ? 'list-display' : ''}>
-      <Link to={routes.MOVIE.replace(':id', String(props.id))}>
+    <Container className={viewType === 'list' ? 'list-display' : ''}>
+      <Link to={routes.MOVIE.replace(':id', String(id))}>
         <Image
-          className={props.viewType === 'list' ? 'list-display' : ''}
-          src={`https://image.tmdb.org/t/p/w500${props.image}`}
+          className={viewType === 'list' ? 'list-display' : ''}
+          src={`https://image.tmdb.org/t/p/w500${image}`}
         />
       </Link>
 
       <About>
-        <Title to={routes.MOVIE.replace(':id', String(props.id))}>{props.title}</Title>
+        <Title to={routes.MOVIE.replace(':id', String(id))}>{title}</Title>
 
-        <Category>{renderCategories(props.categories)}</Category>
+        <Category>{renderCategories()}</Category>
 
         <Rating>
           <StarSVG />
-          <p>{props.rating}</p>
+          <p>{rating}</p>
         </Rating>
 
-        <Description>{`${props.description.substring(0, 150)}...`}</Description>
+        <Description>{`${description.substring(0, 150)}...`}</Description>
       </About>
     </Container>
   );

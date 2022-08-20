@@ -1,7 +1,7 @@
-import { Container, Heading, Title, EllipsePulsing } from './styles';
+import { useTranslation } from 'react-i18next';
 
 import { Carousel } from '../Carousel';
-import { useTranslation } from 'react-i18next';
+import { Container, EllipsePulsing, Heading, Title } from './styles';
 
 export function Releases() {
   const { t } = useTranslation();

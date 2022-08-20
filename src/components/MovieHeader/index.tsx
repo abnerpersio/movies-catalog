@@ -1,18 +1,18 @@
-import {
-  Container,
-  MovieSection,
-  HalfSection,
-  Image,
-  About,
-  Title,
-  Category,
-  Description,
-  Rating,
-} from './styles';
+import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { Genre } from '../../types/movies';
-import { useTranslation } from 'react-i18next';
+import {
+  About,
+  Category,
+  Container,
+  Description,
+  HalfSection,
+  Image,
+  MovieSection,
+  Rating,
+  Title,
+} from './styles';
 
 type Props = {
   movie: {
@@ -24,7 +24,7 @@ type Props = {
   };
 };
 
-export function MovieHeader(props: Props) {
+export function MovieHeader({ movie }: Props) {
   const { t } = useTranslation();
 
   function renderCategories(categories: Genre[]) {
@@ -34,37 +34,33 @@ export function MovieHeader(props: Props) {
 
   let categories;
 
-  if (props.movie?.categories) {
-    categories = renderCategories(props.movie.categories);
+  if (movie.categories) {
+    categories = renderCategories(movie.categories);
   }
 
   return (
     <Container>
-      {props.movie && (
-        <MovieSection>
-          <Image src={`https://image.tmdb.org/t/p/w500${props.movie.image}`} />
+      <MovieSection>
+        <Image src={`https://image.tmdb.org/t/p/w500${movie.image}`} />
 
-          <About>
-            <Title>{props.movie.title}</Title>
+        <About>
+          <Title>{movie.title}</Title>
 
-            <HalfSection>
-              <Category>{categories}</Category>
+          <HalfSection>
+            <Category>{categories}</Category>
 
-              <Rating>
-                <StarSVG />
-                {props.movie.rating}
-              </Rating>
-            </HalfSection>
+            <Rating>
+              <StarSVG />
+              {movie.rating}
+            </Rating>
+          </HalfSection>
 
-            <Description>
-              <span>{t('titles.synopsis')}</span>
-              {props.movie.description}
-            </Description>
-          </About>
-        </MovieSection>
-      )}
-
-      {!props.movie && <p>{t('titles.loading')}</p>}
+          <Description>
+            <span>{t('titles.synopsis')}</span>
+            {movie.description}
+          </Description>
+        </About>
+      </MovieSection>
     </Container>
   );
 }

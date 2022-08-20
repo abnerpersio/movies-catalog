@@ -6,7 +6,7 @@ import { resources } from '../locales';
 i18next.use(initReactI18next).init({
   lng: 'ptBR',
   fallbackLng: 'ptBR',
-  resources: resources,
+  resources,
   parseMissingKeyHandler: () => '',
   interpolation: {
     escapeValue: false,

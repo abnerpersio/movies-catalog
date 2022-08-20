@@ -13,29 +13,28 @@ type Props = {
   categories: number[];
 };
 
-export function ResultCard(props: Props) {
+export function ResultCard({ id, image, title, rating, categories }: Props) {
   const { genres } = useContext(DataContext);
 
-  function renderCategories(categories: number[]) {
-    const getCategoriesName = categories.map((category) => {
-      const genre = genres?.find((genre) => genre.id === category);
-      return genre?.name;
-    });
+  function renderCategories() {
+    const categoriesName = categories.map(
+      (category) => genres?.find(({ id: categoryId }) => categoryId === category)?.name,
+    );
 
-    return <span>{`${getCategoriesName.slice(0, 2)}`}</span>;
+    return <span>{`${categoriesName.slice(0, 2)}`}</span>;
   }
 
   return (
-    <Card to={routes.MOVIE.replace(':id', String(props.id))}>
-      <Image src={`https://image.tmdb.org/t/p/w500${props.image}`} />
+    <Card to={routes.MOVIE.replace(':id', String(id))}>
+      <Image src={`https://image.tmdb.org/t/p/w500${image}`} />
       <About>
-        <Title>{props.title}</Title>
+        <Title>{title}</Title>
 
-        <Category>{renderCategories(props.categories)}</Category>
+        <Category>{renderCategories()}</Category>
 
         <Rating>
           <StarSVG />
-          <p>{props.rating}</p>
+          <p>{rating}</p>
         </Rating>
       </About>
     </Card>
