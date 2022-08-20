@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { useMaxWidth } from '../../hooks/useWindowSize'
+import { useState, useEffect, useContext } from 'react';
+import { useMaxWidth } from '../../hooks/useWindowSize';
 import { Container, ChevronBackIcon, ChevronFrontIcon } from './styles';
 
-import CarouselItem from '../CarouselItem'
+import CarouselItem from '../CarouselItem';
 
-import { DataContext } from '../../context/DataContext'
+import { DataContext } from '../../context/DataContext';
 
 function Carousel() {
-  const { popularMovies } = useContext(DataContext)
+  const { popularMovies } = useContext(DataContext);
   const [carouselDisplay, setCarouselDisplay] = useState<number[]>([]);
   const isMobileSize = useMaxWidth(480);
   const isTabletSize = useMaxWidth(920);
@@ -15,12 +15,12 @@ function Carousel() {
   useEffect(() => {
     if (isMobileSize) {
       setCarouselDisplay([0]);
-    } else if(isTabletSize) {
-      setCarouselDisplay([0, 1])
+    } else if (isTabletSize) {
+      setCarouselDisplay([0, 1]);
     } else {
-      setCarouselDisplay([0, 1, 2, 3])
-    } 
-  }, [isMobileSize, isTabletSize])
+      setCarouselDisplay([0, 1, 2, 3]);
+    }
+  }, [isMobileSize, isTabletSize]);
 
   function renderMovies() {
     return popularMovies?.map((movie, index) => (
@@ -33,7 +33,7 @@ function Carousel() {
         categories={movie.genre_ids}
         rating={movie.vote_average}
       />
-    ))
+    ));
   }
 
   function handlePlus(arr: any[], count: number[]) {
@@ -47,13 +47,13 @@ function Carousel() {
   }
 
   function handlePreviusCarousel() {
-    if(popularMovies) {
+    if (popularMovies) {
       setCarouselDisplay((prevState) => handleMinus(prevState));
     }
   }
-  
+
   function handleNextCarousel() {
-    if(popularMovies) {
+    if (popularMovies) {
       setCarouselDisplay((prevState) => handlePlus(popularMovies, prevState));
     }
   }
@@ -64,8 +64,7 @@ function Carousel() {
       {renderMovies()}
       <ChevronFrontIcon onClick={handleNextCarousel} />
     </Container>
-  )
+  );
 }
 
-export default Carousel
-
+export default Carousel;

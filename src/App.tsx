@@ -1,10 +1,9 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import GlobalStyle from './styles/global'
+import GlobalStyle from './styles/global';
 
-import Home from './components/Home'
-import MoviePage from './components/MoviePage'
+import Home from './components/Home';
+import MoviePage from './components/MoviePage';
 
 function App() {
   return (
@@ -12,10 +11,8 @@ function App() {
       <GlobalStyle />
       <BrowserRouter forceRefresh={true}>
         <Switch>
-
-          <Route exact path={['/', '/home']} component={Home}  />
-          <Route path='/filme/:movieId' component={MoviePage}  />
-        
+          <Route exact path={['/', '/home']} component={Home} />
+          <Route path="/filme/:movieId" component={MoviePage} />
         </Switch>
       </BrowserRouter>
     </>

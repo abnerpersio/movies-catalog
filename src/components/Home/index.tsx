@@ -1,14 +1,13 @@
-import React from 'react'
-import { Container } from './styles'
+import { Container } from './styles';
 
-import Header from '../Header'
-import Footer from '../Footer'
-import Releases from '../Releases'
-import Catalog from '../Catalog'
+import Header from '../Header';
+import Footer from '../Footer';
+import Releases from '../Releases';
+import Catalog from '../Catalog';
 
-import { DataProvider } from '../../context/DataContext'
+import { DataProvider } from '../../context/DataContext';
 
-function Home() { 
+function Home() {
   return (
     <DataProvider>
       <Container>
@@ -20,7 +19,7 @@ function Home() {
         <Footer />
       </Container>
     </DataProvider>
-  )
+  );
 }
 
 export default Home;
