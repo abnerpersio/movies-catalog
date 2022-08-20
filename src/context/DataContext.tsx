@@ -1,12 +1,6 @@
 import { createContext, useState, useEffect, useCallback, ReactNode } from 'react';
-
-const token =
-  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxY2E2MDc5ZDM3N2JhMGExODU4MDc3YWZjMDVkZDFmMyIsInN1YiI6IjYwYzQ0NDI2ZDA0ZDFhMDAyOTk1MTI1YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.p3mk4AJk_5nt7Lor-qi1byDdi4LwUaS0hZiLvz98AyA';
-
-type Genre = {
-  id: number;
-  name: string;
-};
+import MovieService from '../services/MovieService';
+import { Genre, Movie } from '../types/movies';
 
 interface IDataContext {
   catalogMovies?: any[];
@@ -100,77 +94,41 @@ type Props = {
   children: ReactNode;
 };
 
-export function DataProvider(props: Props) {
-  const [catalogMovies, setCatalogMovies] = useState<any[]>([]);
-  const [popularMovies, setPopularMovies] = useState<[]>([]);
+export function DataProvider({ children }: Props) {
+  const [catalog, setCatalog] = useState<Movie[]>([]);
+  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
 
-  const getCatalogMovies = useCallback(async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?page=${page}&language=pt-BR`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    const json = await response.json();
-    const { results } = json;
-    setCatalogMovies(results);
-  }, []);
-
-  function handleNextPage() {
-    setPage((prevState) => prevState + 1);
-  }
-
-  const getNextPageData = useCallback(async (page) => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?page=${page}&language=pt-BR`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    const json = await response.json();
-    const { results } = json;
-    setCatalogMovies((prevState) => [...prevState, ...results]);
-    return true;
-  }, []);
-
-  const getPopularMovies = useCallback(async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?language=pt-BR`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const json = await response.json();
-    const { results } = json;
-    setPopularMovies(results);
+  const listCatalog = useCallback(async (searchPage = 1) => {
+    const { results } = (await MovieService.list(searchPage)).data;
+    setCatalog((prevState) => [...prevState, ...results]);
   }, []);
 
   useEffect(() => {
-    getNextPageData(page);
-  }, [page, getNextPageData]);
+    listCatalog(page);
+  }, [listCatalog, page]);
 
   useEffect(() => {
-    getCatalogMovies();
-    getPopularMovies();
-  }, [getPopularMovies, getCatalogMovies]);
+    async function listPopular() {
+      const { results } = (await MovieService.listPopular()).data;
+      setPopularMovies(results);
+    }
+
+    listPopular();
+  }, []);
+
+  const handleNextPage = useCallback(() => setPage((prevState) => prevState + 1), []);
 
   return (
     <DataContext.Provider
       value={{
         genres,
-        catalogMovies,
+        catalogMovies: catalog,
         popularMovies,
         onNextPage: handleNextPage,
       }}
     >
-      {props.children}
+      {children}
     </DataContext.Provider>
   );
 }
