@@ -1,11 +1,10 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Image, About, Title, Description, Category, Rating } from './styles';
 
-import { DataContext } from '../../context/DataContext';
-
-import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { routes } from '../../constants/routes';
+import { DataContext } from '../../context/DataContext';
+import { ReactComponent as StarSVG } from '../../images/star.svg';
+import { About, Category, Container, Description, Image, Rating, Title } from './styles';
 
 type Props = {
   viewType?: string;
@@ -17,7 +16,7 @@ type Props = {
   rating: number;
 };
 
-export default function MovieCard(props: Props) {
+export function MovieCard(props: Props) {
   const { genres } = useContext(DataContext);
 
   function renderCategories(categories: number[]) {
@@ -48,7 +47,7 @@ export default function MovieCard(props: Props) {
           <p>{props.rating}</p>
         </Rating>
 
-        <Description>{props.description.substring(0, 150) + '...'}</Description>
+        <Description>{`${props.description.substring(0, 150)}...`}</Description>
       </About>
     </Container>
   );

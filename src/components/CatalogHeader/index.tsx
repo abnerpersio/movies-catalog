@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Container, Heading, Title, EllipsePulsing } from './styles';
 
-function CatalogHeader() {
+import { Container, EllipsePulsing, Heading, Title } from './styles';
+
+export function CatalogHeader() {
   const { t } = useTranslation();
 
   return (
@@ -16,5 +17,3 @@ function CatalogHeader() {
     </Container>
   );
 }
-
-export default CatalogHeader;

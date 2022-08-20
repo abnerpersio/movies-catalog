@@ -15,33 +15,32 @@ type Props = {
   rating: number;
 };
 
-export function CarouselItem(props: Props) {
+export function CarouselItem({ active, id, image, title, categories, rating }: Props) {
   const { genres } = useContext(DataContext);
 
-  function renderCategories(categories: number[]) {
-    const getCategoriesName = categories.map((category) => {
-      const genre = genres?.find(({ id }) => id === category);
-      return genre?.name;
-    });
+  function renderCategories() {
+    const categoriesName = categories
+      .map((category) => genres?.find(({ id: categoryId }) => categoryId === category)?.name)
+      .filter(Boolean);
 
-    return <span>{`${getCategoriesName.slice(0, 2)}`}</span>;
+    return <span>{`${categoriesName.slice(0, 2)}`}</span>;
   }
 
   return (
-    <Container className={props.active ? 'active' : 'inactive'}>
-      <Link to={routes.MOVIE.replace(':id', String(props.id))}>
-        <Image src={`https://image.tmdb.org/t/p/w500${props.image}`} />
+    <Container className={active ? 'active' : 'inactive'}>
+      <Link to={routes.MOVIE.replace(':id', String(id))}>
+        <Image src={`https://image.tmdb.org/t/p/w500${image}`} />
       </Link>
 
       <About>
-        <Title to={routes.MOVIE.replace(':id', String(props.id))}>
-          {`${props.title.substring(0, 10)}${props.title.length >= 10 ? '...' : ''}`}
+        <Title to={routes.MOVIE.replace(':id', String(id))}>
+          {`${title.substring(0, 10)}${title.length >= 10 ? '...' : ''}`}
         </Title>
-        <Category>{renderCategories(props.categories)}</Category>
+        <Category>{renderCategories()}</Category>
 
         <Rating>
           <StarSVG />
-          <p>{props.rating}</p>
+          <p>{rating}</p>
         </Rating>
       </About>
     </Container>

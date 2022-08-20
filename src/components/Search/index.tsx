@@ -1,11 +1,11 @@
-import { useRef, useEffect, useState, useCallback } from 'react';
-import { Overlay, Container, Section, ResultsSection, Input } from './styles';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import ResultCard from '../ResultCard';
 import MovieService from '../../services/MovieService';
 import { debounce } from '../../utils/debounce';
+import { ResultCard } from '../ResultCard';
+import { Container, Input, Overlay, ResultsSection, Section } from './styles';
 
-function SearchBar() {
+export function SearchBar() {
   const [moviesResult, setMoviesResult] = useState<any[]>([]);
   const [notFound, setNotFound] = useState<boolean>(false);
   const inputSearchRef = useRef<HTMLInputElement>(null);
@@ -49,7 +49,7 @@ function SearchBar() {
   }
 
   function handleSearchMovie() {
-    let searchQuery: string = '';
+    let searchQuery = '';
     if (inputSearchRef?.current?.value) {
       searchQuery = inputSearchRef.current.value;
     }
@@ -70,5 +70,3 @@ function SearchBar() {
     </Overlay>
   );
 }
-
-export default SearchBar;

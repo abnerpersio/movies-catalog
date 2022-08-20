@@ -11,7 +11,7 @@ import { routes } from '../../constants/routes';
 import MovieService from '../../services/MovieService';
 import { Button, Container, Section } from './styles';
 
-function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
+export function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
   const { t } = useTranslation();
   const [movie, setMovie] = useState<any>({});
   const [notFound, setNotFound] = useState<boolean>(false);
@@ -63,5 +63,3 @@ function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
     </Container>
   );
 }
-
-export default MoviePage;

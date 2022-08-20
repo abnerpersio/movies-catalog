@@ -1,24 +1,24 @@
+import { useTranslation } from 'react-i18next';
+
+import { MobileMenu } from '../MobileMenu';
+import { SearchBar } from '../Search';
 import {
   Container,
-  MenuLink,
   LinkWithScroll,
-  NavSection,
-  Section,
   MenuIcon,
+  MenuLink,
+  NavSection,
   SearchIcon,
+  Section,
   TextLogo,
 } from './styles';
-
-import SearchBar from '../Search';
-import MobileMenu from '../MobileMenu';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
   searchBarActive: boolean;
   onToggleSearch: () => void;
 };
 
-export function NavBar(props: Props) {
+export function NavBar({ searchBarActive, onToggleSearch }: Props) {
   const { t } = useTranslation();
 
   return (
@@ -34,14 +34,11 @@ export function NavBar(props: Props) {
         <MenuLink activeClassName="active" to="/">
           {t('titles.menu.home').toUpperCase()}
         </MenuLink>
-        <LinkWithScroll to="catalog" spy={true} smooth={true} offset={-70} duration={500}>
+        <LinkWithScroll to="catalog" spy smooth offset={-70} duration={500}>
           {t('titles.menu.catalog').toUpperCase()}
         </LinkWithScroll>
-        <SearchIcon
-          className={props.searchBarActive ? 'active' : 'normal'}
-          onClick={props.onToggleSearch}
-        />
-        {props.searchBarActive && <SearchBar />}
+        <SearchIcon className={searchBarActive ? 'active' : 'normal'} onClick={onToggleSearch} />
+        {searchBarActive && <SearchBar />}
       </NavSection>
     </Container>
   );
@@ -54,17 +51,19 @@ type MobileProps = {
   onToggleMenu: () => void;
 };
 
-export function MobileNavBar(props: MobileProps) {
+export function MobileNavBar({
+  searchBarActive,
+  onToggleMenu,
+  onToggleSearch,
+  menuActive,
+}: MobileProps) {
   const { t } = useTranslation();
 
   return (
     <Container>
       <Section>
-        <MenuIcon
-          className={props.searchBarActive ? 'active' : 'normal'}
-          onClick={props.onToggleMenu}
-        />
-        {props.menuActive && <MobileMenu onToggleMenu={props.onToggleMenu} />}
+        <MenuIcon className={searchBarActive ? 'active' : 'normal'} onClick={onToggleMenu} />
+        {menuActive && <MobileMenu onToggleMenu={onToggleMenu} />}
       </Section>
 
       <Section>
@@ -75,11 +74,8 @@ export function MobileNavBar(props: MobileProps) {
       </Section>
 
       <Section>
-        <SearchIcon
-          className={props.searchBarActive ? 'active' : 'normal'}
-          onClick={props.onToggleSearch}
-        />
-        {props.searchBarActive && <SearchBar />}
+        <SearchIcon className={searchBarActive ? 'active' : 'normal'} onClick={onToggleSearch} />
+        {searchBarActive && <SearchBar />}
       </Section>
     </Container>
   );

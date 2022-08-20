@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { DataContext } from '../../context/DataContext';
 import { ReactComponent as GridSVG } from '../../images/grid.svg';
 import { ReactComponent as ListSVG } from '../../images/list.svg';
-import MovieCard from '../MovieCard';
+import { MovieCard } from '../MovieCard';
 import {
   Button,
   CenterButton,
@@ -20,7 +20,7 @@ interface IFilterByGenre {
   genre: number | null;
 }
 
-function CatalogBody() {
+export function CatalogBody() {
   const { t } = useTranslation();
   const { catalogMovies, onNextPage, genres } = useContext(DataContext);
 
@@ -124,5 +124,3 @@ function CatalogBody() {
     </Container>
   );
 }
-
-export default CatalogBody;

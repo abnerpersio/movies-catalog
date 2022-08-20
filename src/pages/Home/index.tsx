@@ -1,13 +1,11 @@
+import { Catalog } from '../../components/Catalog';
+import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
+import { Releases } from '../../components/Releases';
+import { DataProvider } from '../../context/DataContext';
 import { Container } from './styles';
 
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
-import { Releases } from '../../components/Releases';
-import { Catalog } from '../../components/Catalog';
-
-import { DataProvider } from '../../context/DataContext';
-
-function Home() {
+export function Home() {
   return (
     <DataProvider>
       <Container>
@@ -21,5 +19,3 @@ function Home() {
     </DataProvider>
   );
 }
-
-export default Home;

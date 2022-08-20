@@ -1,10 +1,9 @@
 import { useContext } from 'react';
-import { Card, Image, About, Title, Category, Rating } from './styles';
 
-import { DataContext } from '../../context/DataContext';
-
-import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { routes } from '../../constants/routes';
+import { DataContext } from '../../context/DataContext';
+import { ReactComponent as StarSVG } from '../../images/star.svg';
+import { About, Card, Category, Image, Rating, Title } from './styles';
 
 type Props = {
   id: number;
@@ -14,7 +13,7 @@ type Props = {
   categories: number[];
 };
 
-export default function ResultCard(props: Props) {
+export function ResultCard(props: Props) {
   const { genres } = useContext(DataContext);
 
   function renderCategories(categories: number[]) {

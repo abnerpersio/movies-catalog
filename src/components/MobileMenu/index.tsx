@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
+
 import { routes } from '../../constants/routes';
-import { Overlay, Container, Section, MenuLink, LinkWithScroll } from './styles';
+import { Container, LinkWithScroll, MenuLink, Overlay, Section } from './styles';
 
 type Props = {
   onToggleMenu: () => void;
 };
 
-export default function MobileMenu({ onToggleMenu }: Props) {
+export function MobileMenu({ onToggleMenu }: Props) {
   const { t } = useTranslation();
 
   return (
@@ -22,8 +23,8 @@ export default function MobileMenu({ onToggleMenu }: Props) {
           <LinkWithScroll
             onClick={onToggleMenu}
             to="catalog"
-            spy={true}
-            smooth={true}
+            spy
+            smooth
             offset={-70}
             duration={500}
           >
