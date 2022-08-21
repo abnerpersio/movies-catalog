@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as StarSVG } from '../../images/star.svg';
-import { Genre } from '../../types/movies';
+import { Genre, MovieDetails } from '../../types/movies';
 import {
   About,
   Category,
@@ -15,13 +15,7 @@ import {
 } from './styles';
 
 type Props = {
-  movie: {
-    image: string;
-    title: string;
-    description: string;
-    categories: Genre[];
-    rating: number;
-  };
+  movie: MovieDetails;
 };
 
 export function MovieHeader({ movie }: Props) {
@@ -34,14 +28,14 @@ export function MovieHeader({ movie }: Props) {
 
   let categories;
 
-  if (movie.categories) {
-    categories = renderCategories(movie.categories);
+  if (movie.genres) {
+    categories = renderCategories(movie.genres);
   }
 
   return (
     <Container>
       <MovieSection>
-        <Image src={`https://image.tmdb.org/t/p/w500${movie.image}`} />
+        <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
 
         <About>
           <Title>{movie.title}</Title>
@@ -51,13 +45,13 @@ export function MovieHeader({ movie }: Props) {
 
             <Rating>
               <StarSVG />
-              {movie.rating}
+              {movie.vote_average}
             </Rating>
           </HalfSection>
 
           <Description>
             <span>{t('titles.synopsis')}</span>
-            {movie.description}
+            {movie.overview}
           </Description>
         </About>
       </MovieSection>

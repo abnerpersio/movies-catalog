@@ -1,10 +1,10 @@
-import { useState, useEffect, useContext } from 'react';
-import { useMaxWidth } from '../../hooks/useWindowSize';
-import { Container, ChevronBackIcon, ChevronFrontIcon } from './styles';
-
-import { CarouselItem } from '../CarouselItem';
+import { useContext, useEffect, useState } from 'react';
 
 import { DataContext } from '../../context/DataContext';
+import { useMaxWidth } from '../../hooks/useWindowSize';
+import { Movie } from '../../types/movies';
+import { CarouselItem } from '../CarouselItem';
+import { ChevronBackIcon, ChevronFrontIcon, Container } from './styles';
 
 export function Carousel() {
   const { popularMovies } = useContext(DataContext);
@@ -36,7 +36,7 @@ export function Carousel() {
     ));
   }
 
-  function handlePlus(arr: any[], count: number[]) {
+  function handlePlus(arr: Movie[], count: number[]) {
     const lastItemIndex = arr.length - 1;
     const lastCountIndex = count.length - 1;
     return count[lastCountIndex] === lastItemIndex ? count : count.map((number) => number + 1);

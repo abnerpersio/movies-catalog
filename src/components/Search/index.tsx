@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import MovieService from '../../services/MovieService';
+import { Movie } from '../../types/movies';
 import { debounce } from '../../utils/debounce';
 import { ResultCard } from '../ResultCard';
 import { Container, Input, Overlay, ResultsSection, Section } from './styles';
 
 export function SearchBar() {
-  const [moviesResult, setMoviesResult] = useState<any[]>([]);
+  const [moviesResult, setMoviesResult] = useState<Movie[]>([]);
   const [notFound, setNotFound] = useState<boolean>(false);
   const inputSearchRef = useRef<HTMLInputElement>(null);
 

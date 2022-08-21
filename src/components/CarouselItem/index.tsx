@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { routes } from '../../constants/routes';
-import { DataContext } from '../../context/DataContext';
+import { ContextData } from '../../context/DataContext';
 import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { About, Category, Container, Image, Rating, Title } from './styles';
 

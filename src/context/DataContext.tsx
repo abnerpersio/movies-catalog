@@ -3,14 +3,14 @@ import { ReactNode, createContext, useCallback, useEffect, useMemo, useState } f
 import MovieService from '../services/MovieService';
 import { Genre, Movie } from '../types/movies';
 
-interface IDataContext {
-  catalogMovies?: any[];
-  popularMovies?: any[];
+type Data = {
+  catalogMovies?: Movie[];
+  popularMovies?: Movie[];
   genres?: Genre[];
   onNextPage?: () => void;
-}
+};
 
-export const DataContext = createContext<IDataContext>({});
+export const DataContext = createContext<Data>({});
 
 const genres: Genre[] = [
   {

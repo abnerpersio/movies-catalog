@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DataContext } from '../../context/DataContext';
+import { ContextData } from '../../context/DataContext';
 import { ReactComponent as GridSVG } from '../../images/grid.svg';
 import { ReactComponent as ListSVG } from '../../images/list.svg';
 import { MovieCard } from '../MovieCard';

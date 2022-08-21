@@ -9,31 +9,28 @@ import { MovieBody } from '../../components/MovieBody';
 import { MovieHeader } from '../../components/MovieHeader';
 import { routes } from '../../constants/routes';
 import MovieService from '../../services/MovieService';
+import { MovieDetails } from '../../types/movies';
 import { Button, Container, Section } from './styles';
 
 export function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
   const { t } = useTranslation();
-  const [movie, setMovie] = useState<any>({});
+  const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [notFound, setNotFound] = useState<boolean>(false);
   const { id } = match.params;
 
   useEffect(() => {
     async function getMovie() {
       try {
-        const { data } = await MovieService.getMovie(id!);
+        if (!id) return;
+
+        const { data } = await MovieService.getMovie(id);
 
         if (!data) {
           setNotFound(true);
           return;
         }
 
-        setMovie({
-          image: data.poster_path,
-          title: data.title,
-          description: data.overview,
-          categories: data.genres,
-          rating: data.vote_average,
-        });
+        setMovie(data);
       } catch (error: any) {
         setNotFound(true);
       }
@@ -49,10 +46,12 @@ export function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
       {notFound ? (
         <ErrorPage />
       ) : (
-        <>
-          <MovieHeader movie={movie} />
-          <MovieBody />
-        </>
+        movie && (
+          <>
+            <MovieHeader movie={movie} />
+            <MovieBody />
+          </>
+        )
       )}
 
       <Section>
