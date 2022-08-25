@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as StarSVG } from '../../images/star.svg';
-import { Genre, MovieDetails } from '../../types/movies';
+import { MovieDetails } from '../../types/movies';
 import {
   About,
   Category,
@@ -21,16 +21,7 @@ type Props = {
 export function MovieHeader({ movie }: Props) {
   const { t } = useTranslation();
 
-  function renderCategories(categories: Genre[]) {
-    const getCategoriesName = categories.map((category) => category.name);
-    return <span>{`${getCategoriesName[0]}`}</span>;
-  }
-
-  let categories;
-
-  if (movie.genres) {
-    categories = renderCategories(movie.genres);
-  }
+  const { genres } = movie;
 
   return (
     <Container>
@@ -41,7 +32,7 @@ export function MovieHeader({ movie }: Props) {
           <Title>{movie.title}</Title>
 
           <HalfSection>
-            <Category>{categories}</Category>
+            <Category>{genres?.[0] && <span>{genres[0].name}</span>}</Category>
 
             <Rating>
               <StarSVG />

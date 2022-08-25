@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ContextData } from '../../context/DataContext';
+import { DataContext } from '../../context/DataContext';
 import { ReactComponent as GridSVG } from '../../images/grid.svg';
 import { ReactComponent as ListSVG } from '../../images/list.svg';
 import { MovieCard } from '../MovieCard';
@@ -34,10 +34,10 @@ export function CatalogBody() {
   function renderCatalog() {
     let filteredMovies = catalogMovies;
 
-    if (filterByGenre.filter) {
-      filteredMovies = catalogMovies?.filter(
-        (movie) => movie.genre_ids.indexOf(filterByGenre.genre) > -1,
-      );
+    const { filter, genre } = filterByGenre;
+
+    if (filter && genre) {
+      filteredMovies = catalogMovies?.filter((movie) => movie.genre_ids.indexOf(genre) > -1);
     }
 
     if (orderByPopular) {

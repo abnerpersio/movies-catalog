@@ -7,7 +7,7 @@ export type MovieDetails = {
   poster_path: string;
   title: string;
   overview: string;
-  genres: number[];
+  genres: Genre[];
   vote_average: number;
 };
 
@@ -16,6 +16,7 @@ export type Movie = {
   poster_path: string;
   title: string;
   genre_ids: number[];
+  overview: string;
   vote_average: number;
 };
 
