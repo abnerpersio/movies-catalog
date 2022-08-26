@@ -21,6 +21,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          PUBLIC_URL: /movies-catalog
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
