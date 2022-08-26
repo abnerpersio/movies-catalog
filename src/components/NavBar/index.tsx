@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { routes } from '../../constants/routes';
 import { MobileMenu } from '../MobileMenu';
 import { SearchBar } from '../Search';
 import {
@@ -24,17 +25,17 @@ export function NavBar({ searchBarActive, onToggleSearch }: Props) {
   return (
     <Container>
       <Section>
-        <TextLogo to="/">
+        <TextLogo to={routes.INDEX}>
           {t('project.first_name').toUpperCase()}{' '}
           <span className="bold">{t('project.second_name').toUpperCase()}</span>
         </TextLogo>
       </Section>
 
       <NavSection>
-        <MenuLink activeClassName="active" to="/">
+        <MenuLink activeClassName="active" to={routes.INDEX}>
           {t('titles.menu.home').toUpperCase()}
         </MenuLink>
-        <LinkWithScroll to="catalog" spy smooth offset={-70} duration={500}>
+        <LinkWithScroll to={routes.CATALOG} spy smooth offset={-70} duration={500}>
           {t('titles.menu.catalog').toUpperCase()}
         </LinkWithScroll>
         <SearchIcon className={searchBarActive ? 'active' : 'normal'} onClick={onToggleSearch} />

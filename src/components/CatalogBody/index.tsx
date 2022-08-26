@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DataContext } from '../../context/DataContext';
+import { useData } from '../../hooks/useData';
 import { ReactComponent as GridSVG } from '../../images/grid.svg';
 import { ReactComponent as ListSVG } from '../../images/list.svg';
 import { MovieCard } from '../MovieCard';
@@ -22,7 +22,7 @@ interface IFilterByGenre {
 
 export function CatalogBody() {
   const { t } = useTranslation();
-  const { catalogMovies, onNextPage, genres } = useContext(DataContext);
+  const { catalogMovies, onNextPage, genres } = useData();
 
   const [filterByGenre, setFilterByGenre] = useState<IFilterByGenre>({
     filter: false,
@@ -32,23 +32,29 @@ export function CatalogBody() {
   const [viewType, setViewType] = useState<string>('grid');
 
   function renderCatalog() {
-    let filteredMovies = catalogMovies;
+    let filteredMovies = catalogMovies ?? [];
 
     const { filter, genre } = filterByGenre;
 
     if (filter && genre) {
-      filteredMovies = catalogMovies?.filter((movie) => movie.genre_ids.indexOf(genre) > -1);
+      filteredMovies = filteredMovies.filter((movie) => movie.genre_ids.indexOf(genre) > -1);
     }
 
     if (orderByPopular) {
-      filteredMovies = catalogMovies?.sort((a, b) => {
+      filteredMovies = filteredMovies.sort((a, b) => {
         if (a.vote_average < b.vote_average) return 1;
         if (a.vote_average > b.vote_average) return -1;
         return 0;
       });
+    } else {
+      filteredMovies = filteredMovies.sort((a, b) => {
+        if (a.vote_average < b.vote_average) return -1;
+        if (a.vote_average > b.vote_average) return 1;
+        return 0;
+      });
     }
 
-    return filteredMovies?.map((movie) => (
+    return filteredMovies.map((movie) => (
       <MovieCard
         viewType={viewType}
         key={movie.id}
@@ -69,16 +75,8 @@ export function CatalogBody() {
     });
   }
 
-  function handleOrderByPopular() {
-    return setOrderByPopular(true);
-  }
-
-  function renderCategories() {
-    return genres?.map((genre) => (
-      <option key={genre.id} value={genre.id}>
-        {genre.name}
-      </option>
-    ));
+  function toggleOrderByPopular() {
+    return setOrderByPopular((prevState) => !prevState);
   }
 
   function handleChangeView() {
@@ -96,10 +94,14 @@ export function CatalogBody() {
           <option disabled value="">
             {t('titles.placeholder.by_gender')}
           </option>
-          {renderCategories()}
+          {genres?.map((genre) => (
+            <option key={genre.id} value={genre.id}>
+              {genre.name}
+            </option>
+          ))}
         </Select>
 
-        <Button className={orderByPopular ? 'active' : ''} onClick={handleOrderByPopular}>
+        <Button className={orderByPopular ? 'active' : ''} onClick={toggleOrderByPopular}>
           {t('titles.populars')}
         </Button>
 

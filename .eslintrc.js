@@ -32,6 +32,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     indent: 'off',
+    camelcase: 'off',
   },
   settings: {
     'import/resolver': {

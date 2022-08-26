@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useMaxWidth } from '../../hooks/useWindowSize';
-import { Container } from './styles';
 
+import { useMaxWidth } from '../../hooks/useWindowSize';
 import { MobileNavBar, NavBar } from '../NavBar';
+import { Container } from './styles';
 
 export function Header() {
   const [searchBarActive, setSearchBarActive] = useState(false);

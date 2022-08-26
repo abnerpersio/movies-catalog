@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useMinWidth = (size: number): boolean | undefined => {
+export function useMinWidth(size: number): boolean | undefined {
   const [isMinWidth, setisMinWidth] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
@@ -10,13 +10,14 @@ export const useMinWidth = (size: number): boolean | undefined => {
 
     window.addEventListener('resize', handleResize);
     handleResize();
+
     return () => window.removeEventListener('resize', handleResize);
   }, [size]);
 
   return isMinWidth;
-};
+}
 
-export const useMaxWidth = (size: number): boolean | undefined => {
+export function useMaxWidth(size: number): boolean | undefined {
   const [isMaxWidth, setMaxWidth] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
@@ -26,8 +27,9 @@ export const useMaxWidth = (size: number): boolean | undefined => {
 
     window.addEventListener('resize', handleResize);
     handleResize();
+
     return () => window.removeEventListener('resize', handleResize);
   }, [size]);
 
   return isMaxWidth;
-};
+}

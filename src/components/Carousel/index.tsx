@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { DataContext } from '../../context/DataContext';
+import { useData } from '../../hooks/useData';
 import { useMaxWidth } from '../../hooks/useWindowSize';
 import { Movie } from '../../types/movies';
 import { CarouselItem } from '../CarouselItem';
 import { ChevronBackIcon, ChevronFrontIcon, Container } from './styles';
 
 export function Carousel() {
-  const { popularMovies } = useContext(DataContext);
+  const { popularMovies } = useData();
   const [carouselDisplay, setCarouselDisplay] = useState<number[]>([]);
   const isMobileSize = useMaxWidth(480);
   const isTabletSize = useMaxWidth(920);
@@ -21,20 +21,6 @@ export function Carousel() {
       setCarouselDisplay([0, 1, 2, 3]);
     }
   }, [isMobileSize, isTabletSize]);
-
-  function renderMovies() {
-    return popularMovies?.map((movie, index) => (
-      <CarouselItem
-        id={movie.id}
-        active={carouselDisplay.includes(index)}
-        key={movie.id}
-        image={movie.poster_path}
-        title={movie.title}
-        categories={movie.genre_ids}
-        rating={movie.vote_average}
-      />
-    ));
-  }
 
   function handlePlus(arr: Movie[], count: number[]) {
     const lastItemIndex = arr.length - 1;
@@ -61,7 +47,17 @@ export function Carousel() {
   return (
     <Container>
       <ChevronBackIcon onClick={handlePreviusCarousel} />
-      {renderMovies()}
+      {(popularMovies ?? []).map((movie, index) => (
+        <CarouselItem
+          id={movie.id}
+          active={carouselDisplay.includes(index)}
+          key={movie.id}
+          image={movie.poster_path}
+          title={movie.title}
+          categories={movie.genre_ids}
+          rating={movie.vote_average}
+        />
+      ))}
       <ChevronFrontIcon onClick={handleNextCarousel} />
     </Container>
   );

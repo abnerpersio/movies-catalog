@@ -32,23 +32,6 @@ export function SearchBar() {
     inputSearchRef.current.focus();
   }, []);
 
-  function renderResults() {
-    if (!moviesResult || notFound) {
-      return <h3 style={{ textAlign: 'center' }}>Nenhum filme encontrado!</h3>;
-    }
-
-    return moviesResult?.map((movie) => (
-      <ResultCard
-        key={movie.id}
-        id={movie.id}
-        image={movie.poster_path}
-        title={movie.title}
-        categories={movie.genre_ids}
-        rating={movie.vote_average}
-      />
-    ));
-  }
-
   function handleSearchMovie() {
     let searchQuery = '';
     if (inputSearchRef?.current?.value) {
@@ -59,6 +42,8 @@ export function SearchBar() {
     return searchQuery;
   }
 
+  const isValidList = moviesResult && !notFound;
+
   return (
     <Overlay>
       <Container>
@@ -66,7 +51,20 @@ export function SearchBar() {
           <Input ref={inputSearchRef} onChange={debounce(handleSearchMovie, 1000)} />
         </Section>
 
-        <ResultsSection>{renderResults()}</ResultsSection>
+        <ResultsSection>
+          {!isValidList && <h3>Nenhum filme encontrado!</h3>}
+          {isValidList &&
+            moviesResult?.map((movie) => (
+              <ResultCard
+                key={movie.id}
+                id={movie.id}
+                image={movie.poster_path}
+                title={movie.title}
+                categories={movie.genre_ids}
+                rating={movie.vote_average}
+              />
+            ))}
+        </ResultsSection>
       </Container>
     </Overlay>
   );

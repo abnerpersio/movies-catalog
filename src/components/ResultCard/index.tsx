@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { useMemo } from 'react';
 
 import { routes } from '../../constants/routes';
-import { DataContext } from '../../context/DataContext';
+import { useData } from '../../hooks/useData';
 import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { About, Card, Category, Image, Rating, Title } from './styles';
 
@@ -14,15 +14,15 @@ type Props = {
 };
 
 export function ResultCard({ id, image, title, rating, categories }: Props) {
-  const { genres } = useContext(DataContext);
+  const { genres } = useData();
 
-  function renderCategories() {
-    const categoriesName = categories.map(
-      (category) => genres?.find(({ id: categoryId }) => categoryId === category)?.name,
-    );
-
-    return <span>{`${categoriesName.slice(0, 2)}`}</span>;
-  }
+  const categoriesName = useMemo(
+    () =>
+      categories
+        .map((category) => genres?.find(({ id: categoryId }) => categoryId === category)?.name)
+        .filter(Boolean),
+    [categories, genres],
+  );
 
   return (
     <Card to={routes.MOVIE.replace(':id', String(id))}>
@@ -30,7 +30,9 @@ export function ResultCard({ id, image, title, rating, categories }: Props) {
       <About>
         <Title>{title}</Title>
 
-        <Category>{renderCategories()}</Category>
+        <Category>
+          <span>{categoriesName.slice(0, 2).join(', ')}</span>
+        </Category>
 
         <Rating>
           <StarSVG />

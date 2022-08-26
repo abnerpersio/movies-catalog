@@ -101,7 +101,7 @@ export function DataProvider({ children }: Props) {
   const [page, setPage] = useState(1);
 
   const listCatalog = useCallback(async (searchPage = 1) => {
-    const { results } = (await MovieService.list(searchPage)).data;
+    const { results } = (await MovieService.list({ page: searchPage })).data;
     setCatalog((prevState) => [...prevState, ...results]);
   }, []);
 

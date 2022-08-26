@@ -72,6 +72,10 @@ export const ResultsSection = styled.section`
   padding-bottom: 8rem;
   overflow: auto;
 
+  h3 {
+    text-align: center;
+  }
+
   @media (max-width: 620px) {
     width: 95%;
     padding: 2.5rem 1rem;
