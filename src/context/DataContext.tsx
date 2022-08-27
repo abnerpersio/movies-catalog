@@ -98,7 +98,7 @@ type Props = {
 export function DataProvider({ children }: Props) {
   const [catalog, setCatalog] = useState<Movie[]>([]);
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
 
   const listCatalog = useCallback(async (searchPage = 1) => {
     const { results } = (await MovieService.list({ page: searchPage })).data;
