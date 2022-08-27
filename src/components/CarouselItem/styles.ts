@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
-interface IContainerProps {
+type ContainerProps = {
   className?: string;
-}
+};
 
 const fadeIn = keyframes`
   from {opacity: 0.3}
   to {opacity: 1}
 `;
 
-export const Container = styled.section<IContainerProps>`
+export const Container = styled.section<ContainerProps>`
   display: none;
   width: 25%;
   padding: 2rem;

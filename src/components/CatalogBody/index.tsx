@@ -15,16 +15,16 @@ import {
   Select,
 } from './styles';
 
-interface IFilterByGenre {
+type FilterByGenre = {
   filter: boolean;
   genre: number | null;
-}
+};
 
 export function CatalogBody() {
   const { t } = useTranslation();
   const { catalogMovies, onNextPage, genres } = useData();
 
-  const [filterByGenre, setFilterByGenre] = useState<IFilterByGenre>({
+  const [filterByGenre, setFilterByGenre] = useState<FilterByGenre>({
     filter: false,
     genre: null,
   });
@@ -80,7 +80,7 @@ export function CatalogBody() {
   }
 
   function handleChangeView() {
-    return viewType === 'list' ? setViewType('grid') : setViewType('list');
+    setViewType((prevState) => (prevState === 'list' ? 'grid' : 'list'));
   }
 
   return (

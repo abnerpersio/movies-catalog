@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import styled from 'styled-components';
 
@@ -17,31 +17,45 @@ export const Container = styled.header`
   & * {
     margin: 0px;
   }
-`;
 
-export const Section = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+  & > section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-export const NavSection = styled.section`
-  display: flex;
-  justify-content: center;
-  column-gap: 30px;
-  align-items: center;
-`;
+    a {
+      text-decoration: none;
+      color: #eaeaea;
+      font-style: regular;
+      font-weight: 500;
 
-export const TextLogo = styled(Link)`
-  text-decoration: none;
-  color: #eaeaea;
-  font-size: 1.17em;
-  font-style: regular;
-  font-weight: 500;
+      &.logo {
+        font-size: 1.17em;
+      }
 
-  & .bold {
-    color: #fe3189;
-    font-weight: 700;
+      & .bold {
+        color: #fe3189;
+        font-weight: 700;
+      }
+    }
+
+    &.nav {
+      column-gap: 30px;
+    }
+
+    &.mobile-menu {
+      display: none;
+
+      @media (max-width: 920px) {
+        display: block;
+      }
+    }
+
+    @media (max-width: 920px) {
+      & .desktop-menu {
+        display: none;
+      }
+    }
   }
 `;
 

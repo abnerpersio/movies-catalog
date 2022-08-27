@@ -6,11 +6,11 @@ const fadeIn = keyframes`
   to {opacity: 1}
 `;
 
-interface IContainer {
-  className: string | undefined;
-}
+type ContainerParams = {
+  className?: string;
+};
 
-export const Container = styled.section<IContainer>`
+export const Container = styled.section<ContainerParams>`
   display: inline-block;
   vertical-align: top;
   column-gap: 20px;
