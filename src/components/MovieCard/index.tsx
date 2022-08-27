@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { routes } from '../../constants/routes';
 import { useData } from '../../hooks/useData';
 import { ReactComponent as StarSVG } from '../../images/star.svg';
+import { formatImageUrl } from '../../utils/image';
 import { About, Category, Container, Description, Image, Rating, Title } from './styles';
 
 type Props = {
@@ -30,10 +31,7 @@ export function MovieCard({ viewType, id, image, title, categories, description,
   return (
     <Container className={viewType === 'list' ? 'list-display' : ''}>
       <Link to={routes.MOVIE.replace(':id', String(id))}>
-        <Image
-          className={viewType === 'list' ? 'list-display' : ''}
-          src={`https://image.tmdb.org/t/p/w500${image}`}
-        />
+        <Image className={viewType === 'list' ? 'list-display' : ''} src={formatImageUrl(image)} />
       </Link>
 
       <About>

@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { ErrorPage } from '../../components/404';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
+import { Loader } from '../../components/Loader';
 import { MovieBody } from '../../components/MovieBody';
 import { MovieHeader } from '../../components/MovieHeader';
 import { routes } from '../../constants/routes';
@@ -14,6 +15,7 @@ import { Button, Container, Section } from './styles';
 
 export function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
   const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [notFound, setNotFound] = useState<boolean>(false);
   const { id } = match.params;
@@ -33,6 +35,8 @@ export function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
         setMovie(data);
       } catch (error: any) {
         setNotFound(true);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -41,6 +45,8 @@ export function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
 
   return (
     <Container>
+      <Loader isLoading={isLoading} />
+
       <Header />
 
       {notFound ? (

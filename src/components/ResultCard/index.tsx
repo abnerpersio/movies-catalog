@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { routes } from '../../constants/routes';
 import { useData } from '../../hooks/useData';
 import { ReactComponent as StarSVG } from '../../images/star.svg';
+import { formatImageUrl } from '../../utils/image';
 import { About, Card, Category, Image, Rating, Title } from './styles';
 
 type Props = {
@@ -26,7 +27,7 @@ export function ResultCard({ id, image, title, rating, categories }: Props) {
 
   return (
     <Card to={routes.MOVIE.replace(':id', String(id))}>
-      <Image src={`https://image.tmdb.org/t/p/w500${image}`} />
+      <Image src={formatImageUrl(image)} />
       <About>
         <Title>{title}</Title>
 

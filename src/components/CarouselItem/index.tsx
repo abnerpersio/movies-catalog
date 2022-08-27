@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { routes } from '../../constants/routes';
 import { useData } from '../../hooks/useData';
 import { ReactComponent as StarSVG } from '../../images/star.svg';
+import { formatImageUrl } from '../../utils/image';
 import { About, Category, Container, Image, Rating, Title } from './styles';
 
 type Props = {
@@ -29,7 +30,7 @@ export function CarouselItem({ active, id, image, title, categories, rating }: P
   return (
     <Container className={active ? 'active' : 'inactive'}>
       <Link to={routes.MOVIE.replace(':id', String(id))}>
-        <Image src={`https://image.tmdb.org/t/p/w500${image}`} />
+        <Image src={formatImageUrl(image)} />
       </Link>
 
       <About>

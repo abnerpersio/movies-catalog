@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { MovieDetails } from '../../types/movies';
+import { formatImageUrl } from '../../utils/image';
 import {
   About,
   Category,
@@ -26,7 +27,7 @@ export function MovieHeader({ movie }: Props) {
   return (
     <Container>
       <MovieSection>
-        <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+        <Image src={formatImageUrl(movie.poster_path)} />
 
         <About>
           <Title>{movie.title}</Title>
