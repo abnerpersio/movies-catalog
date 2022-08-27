@@ -2,15 +2,12 @@
   "name": "movies-catalog",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://abnerpersio.github.io/movies-catalog",
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
-    "deploy": "npm run build && gh-pages -d build"
+    "build": "CI=false react-scripts build"
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "gh-pages": "^4.0.0",
     "i18next": "^21.9.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
