@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 
 import { routes } from '../../constants/routes';
 import { useData } from '../../hooks/useData';
-import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { formatImageUrl } from '../../utils/image';
+import { StarIcon } from '../icons/star';
 import { About, Card, Category, Image, Rating, Title } from './styles';
 
 type Props = {
@@ -36,7 +36,7 @@ export function ResultCard({ id, image, title, rating, categories }: Props) {
         </Category>
 
         <Rating>
-          <StarSVG />
+          <StarIcon />
           <p>{rating}</p>
         </Rating>
       </About>

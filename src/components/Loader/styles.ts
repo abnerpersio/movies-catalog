@@ -54,7 +54,7 @@ export const Overlay = styled.div`
 
     div {
       position: absolute;
-      border: 4px solid #fe3189;
+      border: 4px solid ${({ theme }) => theme.colors.primary[500]};
       opacity: 1;
       border-radius: 50%;
       animation: ${loadAnimation} 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;

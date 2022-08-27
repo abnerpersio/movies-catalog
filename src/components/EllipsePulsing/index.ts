@@ -12,4 +12,5 @@ const PulseAnimation = keyframes`
 
 export const EllipsePulsing = styled(EllipseSVG)`
   animation: 2s ${PulseAnimation} infinite;
+  fill: ${({ theme }) => theme.colors.primary[500]};
 `;

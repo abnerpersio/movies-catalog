@@ -11,7 +11,7 @@ export const Container = styled.section`
 `;
 
 export const ChevronBackIcon = styled(ChevronBackSVG)`
-  stroke: #eaeaea;
+  stroke: ${({ theme }) => theme.colors.secondary};
   width: 1rem;
   position: absolute;
   top: 30%;
@@ -25,12 +25,12 @@ export const ChevronBackIcon = styled(ChevronBackSVG)`
   }
 
   &:hover * {
-    stroke: #fe3189;
+    stroke: ${({ theme }) => theme.colors.primary[500]};
   }
 `;
 
 export const ChevronFrontIcon = styled(ChevronFrontSVG)`
-  stroke: #eaeaea;
+  stroke: ${({ theme }) => theme.colors.secondary};
   width: 1rem;
   position: absolute;
   top: 30%;
@@ -44,6 +44,6 @@ export const ChevronFrontIcon = styled(ChevronFrontSVG)`
   }
 
   &:hover * {
-    stroke: #fe3189;
+    stroke: ${({ theme }) => theme.colors.primary[500]};
   }
 `;

@@ -16,10 +16,9 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: #1B1B1F;
-    color: #EAEAEA;
-
     font-family: 'Poppins', sans-serif;
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
   }
 
   ::-webkit-scrollbar {
@@ -27,14 +26,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-track {
-    background: #212125;
+    background: ${({ theme }) => theme.colors.dark[300]};
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #9F9FA0;
+    background: ${({ theme }) => theme.colors.gray};
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #000000;
+    background: ${({ theme }) => theme.colors.dark[500]};
   }
 `;

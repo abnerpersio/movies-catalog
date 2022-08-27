@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { MovieDetails } from '../../types/movies';
 import { formatImageUrl } from '../../utils/image';
+import { StarIcon } from '../icons/star';
 import {
   About,
   Category,
@@ -36,7 +36,7 @@ export function MovieHeader({ movie }: Props) {
             <Category>{genres?.[0] && <span>{genres[0].name}</span>}</Category>
 
             <Rating>
-              <StarSVG />
+              <StarIcon />
               {movie.vote_average}
             </Rating>
           </HalfSection>

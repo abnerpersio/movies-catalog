@@ -21,7 +21,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   padding: 1rem;
-  background: #212125;
+  background: ${({ theme }) => theme.colors.dark[300]};
   box-shadow: 0px 4px 25px 4px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
 
@@ -52,33 +52,33 @@ export const Section = styled.section`
 export const MenuLink = styled(NavLink)`
   text-decoration: none;
   cursor: pointer;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   transition: 0.8s;
   border-bottom: solid 3px transparent;
 
   &.active {
-    border-color: #fe3189;
+    border-color: ${({ theme }) => theme.colors.primary[500]};
   }
 
   &:hover {
-    color: #fe3189;
-    border-color: #fe3189;
+    color: ${({ theme }) => theme.colors.primary[500]};
+    border-color: ${({ theme }) => theme.colors.primary[500]};
   }
 `;
 
 export const LinkWithScroll = styled(ScrollLink)`
   text-decoration: none;
   cursor: pointer;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   transition: 0.8s;
   border-bottom: solid 3px transparent;
 
   &.active {
-    border-color: #fe3189;
+    border-color: ${({ theme }) => theme.colors.primary[500]};
   }
 
   &:hover {
-    color: #fe3189;
-    border-color: #fe3189;
+    color: ${({ theme }) => theme.colors.primary[500]};
+    border-color: ${({ theme }) => theme.colors.primary[500]};
   }
 `;

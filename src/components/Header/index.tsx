@@ -4,7 +4,7 @@ import { NavBar } from '../NavBar';
 import { Container } from './styles';
 
 export function Header() {
-  const [searchBarActive, setSearchBarActive] = useState(false);
+  const [searchBarActive, setSearchBarActive] = useState<boolean>(false);
 
   function toggleSearchBar() {
     setSearchBarActive((prevState) => !prevState);

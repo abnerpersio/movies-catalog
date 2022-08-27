@@ -14,7 +14,7 @@ type Props = {
 
 export function NavBar({ searchBarActive, onToggleSearch }: Props) {
   const { t } = useTranslation();
-  const [isMenuActive, setIsMenuActive] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
   const handleToggleMenu = useCallback(() => setIsMenuActive((prevState) => !prevState), []);
 

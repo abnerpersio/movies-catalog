@@ -12,11 +12,16 @@ export const Button = styled(Link)`
   text-decoration: none;
   border: none;
   padding: 0.5rem 1.2rem;
-  background: linear-gradient(180deg, #fe3189 0%, #fe3189 100%), #fe3189;
-  box-shadow: 0px 0px 6px #ff0772;
-  border: 1px solid #fe3189;
+  background: linear-gradient(
+      180deg,
+      ${({ theme }) => theme.colors.primary[500]} 0%,
+      ${({ theme }) => theme.colors.primary[500]} 100%
+    ),
+    ${({ theme }) => theme.colors.primary[500]};
+  box-shadow: 0px 0px 6px ${({ theme }) => theme.colors.primary[700]};
+  border: 1px solid ${({ theme }) => theme.colors.primary[500]};
   border-radius: 4px;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   font-weight: 600;
   font-size: 1em;
   transition: 0.6s;

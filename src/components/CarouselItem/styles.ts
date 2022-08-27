@@ -49,14 +49,14 @@ export const About = styled.div`
 
 export const Title = styled(Link)`
   text-decoration: none;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 1.5em;
   font-weight: 500;
   transition: 0.4s;
   cursor: pointer;
 
   &:hover {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.light};
   }
 `;
 
@@ -64,7 +64,7 @@ export const Category = styled.p`
   margin-top: 5px;
   font-size: 1.2em;
   font-weight: 300;
-  color: #fe3189;
+  color: ${({ theme }) => theme.colors.primary[500]};
 `;
 
 export const Rating = styled.div`

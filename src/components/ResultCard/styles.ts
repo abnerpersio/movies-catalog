@@ -3,11 +3,9 @@ import styled from 'styled-components';
 
 export const Card = styled(Link)`
   text-decoration: none;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   width: calc((100% / 2) - 1.5rem);
   display: inline-block;
-  background: #252529;
-  border: 1px solid #313136;
   border-radius: 4px;
   padding: 1.5rem;
   margin: 0.6rem 0.5rem;
@@ -15,7 +13,7 @@ export const Card = styled(Link)`
   transition: 0.8s;
 
   &:hover {
-    border: 1px solid #eaeaea;
+    border: 1px solid ${({ theme }) => theme.colors.secondary};
     transform: scale(0.98);
   }
 
@@ -52,13 +50,13 @@ export const About = styled.div`
 
 export const Title = styled.h4`
   text-decoration: none;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 1.5em;
   font-weight: 500;
   transition: 0.4s;
 
   &:hover {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.light};
   }
 
   @media (max-width: 480px) {
@@ -70,7 +68,7 @@ export const Category = styled.p`
   margin-top: 5px;
   font-size: 1.2em;
   font-weight: 300;
-  color: #fe3189;
+  color: ${({ theme }) => theme.colors.primary[500]};
 
   @media (max-width: 480px) {
     font-size: 0.9em;

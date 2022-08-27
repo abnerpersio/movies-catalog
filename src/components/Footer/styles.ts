@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.footer`
   margin-top: 140px;
-  background: #18181c;
+  background: ${({ theme }) => theme.colors.dark[300]};
   display: flex;
   justify-content: center;
   align-items: center;

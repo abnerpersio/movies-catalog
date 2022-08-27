@@ -15,7 +15,7 @@ import { Button, Container, Section } from './styles';
 
 export function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
   const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [notFound, setNotFound] = useState<boolean>(false);
   const { id } = match.params;
@@ -49,15 +49,12 @@ export function MoviePage({ match }: RouteComponentProps<{ id?: string }>) {
 
       <Header />
 
-      {notFound ? (
-        <ErrorPage />
-      ) : (
-        movie && (
-          <>
-            <MovieHeader movie={movie} />
-            <MovieBody />
-          </>
-        )
+      {notFound && <ErrorPage />}
+      {movie && (
+        <>
+          <MovieHeader movie={movie} />
+          <MovieBody movie={movie} />
+        </>
       )}
 
       <Section>

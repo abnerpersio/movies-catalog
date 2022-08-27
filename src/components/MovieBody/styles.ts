@@ -18,7 +18,7 @@ export const Heading = styled.div`
 
   & h1 {
     width: 100%;
-    border-bottom: 1px solid #fe3189;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.primary[500]};
   }
 
   @media (min-width: 920px) {

@@ -19,7 +19,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   padding: 1rem;
-  background: #212125;
+  background: ${({ theme }) => theme.colors.dark[300]};
   box-shadow: 0px 4px 25px 4px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
 
@@ -52,13 +52,13 @@ export const Input = styled.input`
   border: none;
   outline: none;
   background: transparent;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 1.2em;
   padding-bottom: 1.2rem;
-  border-bottom: 2px solid #fe3189;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primary[500]};
 
   &:focus {
-    border-color: #ff0772;
+    border-color: ${({ theme }) => theme.colors.primary[700]};
   }
 `;
 

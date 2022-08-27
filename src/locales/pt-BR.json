@@ -15,7 +15,7 @@
     "go_back": "voltar",
     "loading": "carregando...",
     "synopsis": "Sinopse",
-    "trailer": "Trailer",
+    "about": "Sobre",
     "errors": {
       "movie_not_found": "Oops, Filme não encontrado!"
     },

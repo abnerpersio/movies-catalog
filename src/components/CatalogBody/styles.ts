@@ -23,25 +23,35 @@ export const FilterBar = styled.div`
 `;
 
 export const Select = styled.select`
-  background: linear-gradient(180deg, #212125 0%, #2e2e35 100%), #212125;
-  border: 2px solid #2e2d31;
+  background: linear-gradient(
+      180deg,
+      ${({ theme }) => theme.colors.dark[300]} 0%,
+      ${({ theme }) => theme.colors.dark[200]} 100%
+    ),
+    ${({ theme }) => theme.colors.dark[300]};
+  border: 2px solid ${({ theme }) => theme.colors.dark[100]};
   border-radius: 4px;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   padding: 5px 10px;
   font-weight: 600;
   font-size: 1em;
 
   & option {
-    background: #212125;
-    color: #eaeaea;
+    background: ${({ theme }) => theme.colors.dark[300]};
+    color: ${({ theme }) => theme.colors.secondary};
   }
 `;
 
 export const DarkButton = styled.button`
-  background: linear-gradient(180deg, #212125 0%, #2e2e35 100%), #212125;
-  border: 2px solid #2e2d31;
+  background: linear-gradient(
+      180deg,
+      ${({ theme }) => theme.colors.dark[300]} 0%,
+      ${({ theme }) => theme.colors.dark[100]} 100%
+    ),
+    ${({ theme }) => theme.colors.dark[300]};
+  border: 2px solid ${({ theme }) => theme.colors.dark[100]};
   border-radius: 4px;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   padding: 5px 10px;
   font-weight: 600;
   font-size: 1em;
@@ -74,11 +84,16 @@ type ButtonParams = {
 export const Button = styled.button<ButtonParams>`
   border: none;
   padding: 5px 10px;
-  background: linear-gradient(180deg, #fe3189 0%, #fe3189 100%), #fe3189;
-  box-shadow: 0px 0px 6px #ff0772;
-  border: 1px solid #fe3189;
+  background: linear-gradient(
+      180deg,
+      ${({ theme }) => theme.colors.primary[500]} 0%,
+      ${({ theme }) => theme.colors.primary[500]} 100%
+    ),
+    ${({ theme }) => theme.colors.primary[500]};
+  box-shadow: 0px 0px 6px ${({ theme }) => theme.colors.primary[700]};
+  border: 1px solid ${({ theme }) => theme.colors.primary[500]};
   border-radius: 4px;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   font-weight: 600;
   font-size: 1em;
   transition: 0.6s;
@@ -89,7 +104,7 @@ export const Button = styled.button<ButtonParams>`
   }
 
   &:hover {
-    background: #ff0772;
+    background: ${({ theme }) => theme.colors.primary[700]};
   }
 `;
 
@@ -100,7 +115,7 @@ export const CenterButton = styled(Button)`
 
   &:hover {
     background: transparent;
-    color: #fe3189;
+    color: ${({ theme }) => theme.colors.primary[500]};
   }
 `;
 

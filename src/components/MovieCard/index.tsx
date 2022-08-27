@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { routes } from '../../constants/routes';
 import { useData } from '../../hooks/useData';
-import { ReactComponent as StarSVG } from '../../images/star.svg';
 import { formatImageUrl } from '../../utils/image';
+import { StarIcon } from '../icons/star';
 import { About, Category, Container, Description, Image, Rating, Title } from './styles';
 
 type Props = {
@@ -42,7 +42,7 @@ export function MovieCard({ viewType, id, image, title, categories, description,
         </Category>
 
         <Rating>
-          <StarSVG />
+          <StarIcon />
           <p>{rating}</p>
         </Rating>
 

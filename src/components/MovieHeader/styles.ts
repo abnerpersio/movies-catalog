@@ -70,14 +70,14 @@ export const HalfSection = styled.div`
 export const Category = styled.p`
   font-size: 1.5em;
   font-weight: 300;
-  color: #fe3189;
+  color: ${({ theme }) => theme.colors.primary[500]};
 `;
 
 export const Description = styled.p`
   margin-top: 40px;
   font-size: 0.9em;
   font-weight: 100;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
 
   & span {
     display: block;

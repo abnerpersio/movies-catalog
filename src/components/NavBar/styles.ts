@@ -25,7 +25,7 @@ export const Container = styled.header`
 
     a {
       text-decoration: none;
-      color: #eaeaea;
+      color: ${({ theme }) => theme.colors.secondary};
       font-style: regular;
       font-weight: 500;
 
@@ -34,7 +34,7 @@ export const Container = styled.header`
       }
 
       & .bold {
-        color: #fe3189;
+        color: ${({ theme }) => theme.colors.primary[500]};
         font-weight: 700;
       }
     }
@@ -61,36 +61,36 @@ export const Container = styled.header`
 
 export const MenuIcon = styled(MenuSVG)`
   cursor: pointer;
-  stroke: #eaeaea;
+  stroke: ${({ theme }) => theme.colors.secondary};
   transition: 0.2s;
 
   &.active * {
-    stroke: #fe3189;
+    stroke: ${({ theme }) => theme.colors.primary[500]};
   }
 
   &:hover * {
-    stroke: #fe3189;
+    stroke: ${({ theme }) => theme.colors.primary[500]};
   }
 `;
 
 export const SearchIcon = styled(SearchSVG)`
   cursor: pointer;
-  stroke: #eaeaea;
+  stroke: ${({ theme }) => theme.colors.secondary};
   transition: 0.3s;
 
   &.active * {
-    stroke: #fe3189;
+    stroke: ${({ theme }) => theme.colors.primary[500]};
   }
 
   &:hover * {
-    stroke: #fe3189;
+    stroke: ${({ theme }) => theme.colors.primary[500]};
   }
 `;
 
 export const MenuLink = styled(NavLink)`
   text-decoration: none;
   cursor: pointer;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   transition: 0.8s;
 
   &:after {
@@ -104,15 +104,15 @@ export const MenuLink = styled(NavLink)`
 
   &.active {
     &:after {
-      border-color: #fe3189;
+      border-color: ${({ theme }) => theme.colors.primary[500]};
     }
   }
 
   &:hover {
-    color: #fe3189;
+    color: ${({ theme }) => theme.colors.primary[500]};
 
     &:after {
-      border-color: #fe3189;
+      border-color: ${({ theme }) => theme.colors.primary[500]};
       transition: width 0.3s;
     }
   }
@@ -121,7 +121,7 @@ export const MenuLink = styled(NavLink)`
 export const LinkWithScroll = styled(ScrollLink)`
   text-decoration: none;
   cursor: pointer;
-  color: #eaeaea;
+  color: ${({ theme }) => theme.colors.secondary};
   transition: 0.8s;
 
   &:after {
@@ -135,15 +135,15 @@ export const LinkWithScroll = styled(ScrollLink)`
 
   &.active {
     &:after {
-      border-color: #fe3189;
+      border-color: ${({ theme }) => theme.colors.primary[500]};
     }
   }
 
   &:hover {
-    color: #fe3189;
+    color: ${({ theme }) => theme.colors.primary[500]};
 
     &:after {
-      border-color: #fe3189;
+      border-color: ${({ theme }) => theme.colors.primary[500]};
       transition: width 0.3s;
     }
   }
