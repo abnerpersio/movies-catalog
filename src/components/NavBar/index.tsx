@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import { routes } from '../../constants/routes';
 import { MobileMenu } from '../MobileMenu';
 import { SearchBar } from '../Search';
-import { Container, LinkWithScroll, MenuIcon, MenuLink, SearchIcon } from './styles';
+import { MenuIcon } from '../icons/menu';
+import { SearchIcon } from '../icons/search';
+import { Container, LinkWithScroll, MenuLink } from './styles';
 
 type Props = {
   searchBarActive: boolean;

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useData } from '../../hooks/useData';
-import { ReactComponent as GridSVG } from '../../images/grid.svg';
-import { ReactComponent as ListSVG } from '../../images/list.svg';
 import { MovieCard } from '../MovieCard';
+import { GridIcon } from '../icons/grid';
+import { ListIcon } from '../icons/list';
 import {
   Button,
   CenterButton,
@@ -108,11 +108,11 @@ export function CatalogBody() {
         <DarkButton onClick={handleChangeView}>
           {viewType === 'list' ? (
             <>
-              <ListSVG /> <span>{t('titles.list_view')}</span>
+              <ListIcon /> <span>{t('titles.list_view')}</span>
             </>
           ) : (
             <>
-              <GridSVG /> <span>{t('titles.grid_view')}</span>
+              <GridIcon /> <span>{t('titles.grid_view')}</span>
             </>
           )}
         </DarkButton>

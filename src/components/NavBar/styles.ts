@@ -2,9 +2,6 @@ import { NavLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import styled from 'styled-components';
 
-import { ReactComponent as MenuSVG } from '../../images/menu.svg';
-import { ReactComponent as SearchSVG } from '../../images/search.svg';
-
 export const Container = styled.header`
   display: flex;
   justify-content: space-between;
@@ -56,34 +53,6 @@ export const Container = styled.header`
         display: none;
       }
     }
-  }
-`;
-
-export const MenuIcon = styled(MenuSVG)`
-  cursor: pointer;
-  stroke: ${({ theme }) => theme.colors.secondary};
-  transition: 0.2s;
-
-  &.active * {
-    stroke: ${({ theme }) => theme.colors.primary[500]};
-  }
-
-  &:hover * {
-    stroke: ${({ theme }) => theme.colors.primary[500]};
-  }
-`;
-
-export const SearchIcon = styled(SearchSVG)`
-  cursor: pointer;
-  stroke: ${({ theme }) => theme.colors.secondary};
-  transition: 0.3s;
-
-  &.active * {
-    stroke: ${({ theme }) => theme.colors.primary[500]};
-  }
-
-  &:hover * {
-    stroke: ${({ theme }) => theme.colors.primary[500]};
   }
 `;
 
