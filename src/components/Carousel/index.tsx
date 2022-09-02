@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { useData } from '../../hooks/useData';
+import { useMovies } from '../../hooks/useMovies';
 import { useMaxWidth } from '../../hooks/useWindowSize';
 import { Movie } from '../../types/movies';
 import { CarouselItem } from '../CarouselItem';
 import { ChevronBackIcon, ChevronFrontIcon, Container } from './styles';
 
 export function Carousel() {
-  const { popularMovies } = useData();
+  const { popularMovies } = useMovies();
   const [carouselDisplay, setCarouselDisplay] = useState<number[]>([]);
   const isMobileSize = useMaxWidth(480);
   const isTabletSize = useMaxWidth(920);

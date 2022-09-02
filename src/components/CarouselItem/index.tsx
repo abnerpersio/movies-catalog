@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { routes } from '../../constants/routes';
-import { useData } from '../../hooks/useData';
+import { useMovies } from '../../hooks/useMovies';
 import { formatImageUrl } from '../../utils/image';
 import { StarIcon } from '../icons/star';
 import { About, Category, Container, Image, Rating, Title } from './styles';
@@ -17,7 +17,7 @@ type Props = {
 };
 
 export function CarouselItem({ active, id, image, title, categories, rating }: Props) {
-  const { genres } = useData();
+  const { genres } = useMovies();
 
   const categoriesName = useMemo(
     () =>

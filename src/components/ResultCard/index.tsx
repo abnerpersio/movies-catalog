@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import { routes } from '../../constants/routes';
-import { useData } from '../../hooks/useData';
+import { useMovies } from '../../hooks/useMovies';
 import { formatImageUrl } from '../../utils/image';
 import { StarIcon } from '../icons/star';
 import { About, Card, Category, Image, Rating, Title } from './styles';
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export function ResultCard({ id, image, title, rating, categories }: Props) {
-  const { genres } = useData();
+  const { genres } = useMovies();
 
   const categoriesName = useMemo(
     () =>

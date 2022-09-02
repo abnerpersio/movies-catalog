@@ -1,4 +1,4 @@
-import ptBR from './pt-BR.json';
+import ptBR from './pt-BR';
 
 export const resources = {
   ptBR: {

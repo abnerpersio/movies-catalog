@@ -1,5 +1,6 @@
 import { API_URL } from '../constants/app';
-import { MovieDetails, MovieFilter, SearchResults } from '../types/movies';
+import { FormatedMovieFilter } from '../types/filter';
+import { MovieDetails, SearchResults } from '../types/movies';
 import { HttpClient } from './HttpClient';
 
 class MovieService {
@@ -9,13 +10,8 @@ class MovieService {
     this.httpClient = new HttpClient({ baseURL: API_URL });
   }
 
-  list({ page, with_genres }: MovieFilter) {
-    return this.httpClient.get<SearchResults>('discover/movie', {
-      params: {
-        page,
-        with_genres: with_genres ? with_genres.join(',') : undefined,
-      },
-    });
+  list(filters: FormatedMovieFilter) {
+    return this.httpClient.get<SearchResults>('discover/movie', { params: filters });
   }
 
   listPopular() {

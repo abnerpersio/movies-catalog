@@ -2,20 +2,23 @@ import { Catalog } from '../../components/Catalog';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { Releases } from '../../components/Releases';
-import { DataProvider } from '../../context/DataContext';
+import { FilterProvider } from '../../context/FilterContext';
+import { MovieProvider } from '../../context/MovieContext';
 import { Container } from './styles';
 
 export function Home() {
   return (
-    <DataProvider>
-      <Container>
-        <Header />
+    <FilterProvider>
+      <MovieProvider>
+        <Container>
+          <Header />
 
-        <Releases />
-        <Catalog />
+          <Releases />
+          <Catalog />
 
-        <Footer />
-      </Container>
-    </DataProvider>
+          <Footer />
+        </Container>
+      </MovieProvider>
+    </FilterProvider>
   );
 }

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useData } from '../../hooks/useData';
+import { useFilters } from '../../hooks/useFilters';
+import { useMovies } from '../../hooks/useMovies';
 import { MovieCard } from '../MovieCard';
 import { GridIcon } from '../icons/grid';
 import { ListIcon } from '../icons/list';
@@ -15,73 +16,34 @@ import {
   Select,
 } from './styles';
 
-type FilterByGenre = {
-  filter: boolean;
-  genre: number | null;
-};
-
 export function CatalogBody() {
   const { t } = useTranslation();
-  const { catalogMovies, onNextPage, genres } = useData();
+  const { filters, updateFilters, handleNextPage } = useFilters();
+  const { catalogMovies, genres } = useMovies();
 
-  const [filterByGenre, setFilterByGenre] = useState<FilterByGenre>({
-    filter: false,
-    genre: null,
-  });
-  const [orderByPopular, setOrderByPopular] = useState<boolean>(false);
-  const [viewType, setViewType] = useState<string>('grid');
+  const [viewType, setViewType] = useState<'grid' | 'list'>('grid');
 
-  function renderCatalog() {
-    let filteredMovies = catalogMovies ?? [];
+  const handleFilterByCategory = useCallback(
+    (category: string) => {
+      if (!updateFilters) return;
+      updateFilters({ genres: category ? [category] : undefined });
+    },
+    [updateFilters],
+  );
 
-    const { filter, genre } = filterByGenre;
+  const handleOrderByPopular = useCallback(() => {
+    if (!updateFilters) return;
 
-    if (filter && genre) {
-      filteredMovies = filteredMovies.filter((movie) => movie.genre_ids.indexOf(genre) > -1);
-    }
-
-    if (orderByPopular) {
-      filteredMovies = filteredMovies.sort((a, b) => {
-        if (a.vote_average < b.vote_average) return 1;
-        if (a.vote_average > b.vote_average) return -1;
-        return 0;
-      });
-    } else {
-      filteredMovies = filteredMovies.sort((a, b) => {
-        if (a.vote_average < b.vote_average) return -1;
-        if (a.vote_average > b.vote_average) return 1;
-        return 0;
-      });
-    }
-
-    return filteredMovies.map((movie) => (
-      <MovieCard
-        viewType={viewType}
-        key={movie.id}
-        id={movie.id}
-        image={movie.poster_path}
-        title={movie.title}
-        categories={movie.genre_ids}
-        description={movie.overview}
-        rating={movie.vote_average}
-      />
-    ));
-  }
-
-  function handleFilterByCategory(category: string) {
-    return setFilterByGenre({
-      filter: true,
-      genre: Number(category),
+    updateFilters({
+      orderBy: filters?.orderBy === 'popularity' ? undefined : 'popularity',
     });
-  }
-
-  function toggleOrderByPopular() {
-    return setOrderByPopular((prevState) => !prevState);
-  }
+  }, [updateFilters, filters?.orderBy]);
 
   function handleChangeView() {
     setViewType((prevState) => (prevState === 'list' ? 'grid' : 'list'));
   }
+
+  const orderByPopular = useMemo(() => filters?.orderBy === 'popularity', [filters]);
 
   return (
     <Container>
@@ -91,9 +53,7 @@ export function CatalogBody() {
           placeholder={t('titles.placeholder.by_gender')}
           defaultValue=""
         >
-          <option disabled value="">
-            {t('titles.placeholder.by_gender')}
-          </option>
+          <option value="">{t('titles.placeholder.by_gender')}</option>
           {genres?.map((genre) => (
             <option key={genre.id} value={genre.id}>
               {genre.name}
@@ -101,7 +61,7 @@ export function CatalogBody() {
           ))}
         </Select>
 
-        <Button className={orderByPopular ? 'active' : ''} onClick={toggleOrderByPopular}>
+        <Button className={orderByPopular ? 'active' : ''} onClick={handleOrderByPopular}>
           {t('titles.populars')}
         </Button>
 
@@ -118,9 +78,22 @@ export function CatalogBody() {
         </DarkButton>
       </FilterBar>
 
-      <MoviesList>{renderCatalog()}</MoviesList>
+      <MoviesList>
+        {(catalogMovies ?? []).map((movie) => (
+          <MovieCard
+            viewType={viewType}
+            key={movie.id}
+            id={movie.id}
+            image={movie.poster_path}
+            title={movie.title}
+            categories={movie.genre_ids}
+            description={movie.overview}
+            rating={movie.vote_average}
+          />
+        ))}
+      </MoviesList>
 
-      <CenterButton onClick={() => (onNextPage ? onNextPage() : false)}>
+      <CenterButton onClick={() => handleNextPage && handleNextPage()}>
         {t('titles.load_more')}
       </CenterButton>
     </Container>

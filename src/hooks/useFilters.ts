@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+
+import { FilterContxt } from '../context/FilterContext';
 
 export function useFilters() {
-  const [sortByPopular, setSortByPopular] = useState(null);
-  const [filters, setFilters] = useState({});
+  return useContext(FilterContxt);
 }

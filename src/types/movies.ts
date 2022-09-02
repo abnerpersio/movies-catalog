@@ -23,8 +23,3 @@ export type Movie = {
 export type SearchResults = {
   results: Movie[];
 };
-
-export type MovieFilter = {
-  with_genres?: string[];
-  page: number;
-};
