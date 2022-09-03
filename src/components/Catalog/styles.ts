@@ -26,4 +26,48 @@ export const Container = styled.section`
       }
     }
   }
+
+  section.catalog-body {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 0 2rem;
+    max-width: 1000px;
+
+    div.filter-bar {
+      display: flex;
+      justify-content: flex-start;
+      column-gap: 20px;
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+        row-gap: 25px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 1rem;
+      }
+    }
+
+    div.movies-list {
+      margin-top: 45px;
+      width: 100%;
+    }
+
+    div.controls {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button + button {
+        margin-left: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hide-mobile {
+        display: none;
+      }
+    }
+  }
 `;

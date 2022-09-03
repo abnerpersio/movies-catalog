@@ -1,49 +1,8 @@
 import styled from 'styled-components';
 
-import { ReactComponent as ChevronBackSVG } from '../../images/chevron-back.svg';
-import { ReactComponent as ChevronFrontSVG } from '../../images/chevron-front.svg';
-
 export const Container = styled.section`
   margin: 0 auto;
   padding: 0 1.5rem;
   max-width: 1000px;
   position: relative;
-`;
-
-export const ChevronBackIcon = styled(ChevronBackSVG)`
-  stroke: ${({ theme }) => theme.colors.secondary};
-  width: 1rem;
-  position: absolute;
-  top: 30%;
-  left: 0px;
-  transition: 0.5s;
-  cursor: pointer;
-  z-index: 10;
-
-  &:hover {
-    transform: scaleY(1.25);
-  }
-
-  &:hover * {
-    stroke: ${({ theme }) => theme.colors.primary[500]};
-  }
-`;
-
-export const ChevronFrontIcon = styled(ChevronFrontSVG)`
-  stroke: ${({ theme }) => theme.colors.secondary};
-  width: 1rem;
-  position: absolute;
-  top: 30%;
-  right: 0px;
-  transition: 0.5s;
-  cursor: pointer;
-  z-index: 10;
-
-  &:hover {
-    transform: scaleY(1.25);
-  }
-
-  &:hover * {
-    stroke: ${({ theme }) => theme.colors.primary[500]};
-  }
 `;

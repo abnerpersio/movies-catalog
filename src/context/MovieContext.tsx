@@ -1,13 +1,12 @@
 import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { GENRES } from '../constants/genres';
 import { useFilters } from '../hooks/useFilters';
 import MovieService from '../services/MovieService';
 import { Genre, Movie } from '../types/movies';
 
 type Data = {
-  catalogMovies?: Movie[];
+  catalog?: Movie[];
   popularMovies?: Movie[];
   genres?: Genre[];
 };
@@ -23,16 +22,21 @@ export function MovieProvider({ children }: Props) {
 
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
 
-  const KEY = 'movieList';
+  const MOVIE_KEY = 'movieList';
+  const GENRE_KEY = 'genreList';
 
   const { data: catalog } = useQuery(
-    [KEY, convertedFilters],
+    [MOVIE_KEY, convertedFilters],
     async () => {
       if (!convertedFilters) return [];
-
       return (await MovieService.list(convertedFilters))?.data?.results ?? [];
     },
     { enabled: !!convertedFilters },
+  );
+
+  const { data: genres } = useQuery(
+    [GENRE_KEY],
+    async () => (await MovieService.listGenres())?.data?.genres ?? [],
   );
 
   useEffect(() => {
@@ -46,11 +50,11 @@ export function MovieProvider({ children }: Props) {
 
   const value = useMemo(
     () => ({
-      genres: GENRES,
-      catalogMovies: catalog,
+      genres,
+      catalog,
       popularMovies,
     }),
-    [catalog, popularMovies],
+    [catalog, popularMovies, genres],
   );
 
   return <MovieContext.Provider value={value}>{children}</MovieContext.Provider>;

@@ -30,54 +30,54 @@ export const Container = styled.div`
   @media (max-width: 480px) {
     padding: 0px;
   }
-`;
 
-export const Section = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: 2rem 1.5rem;
+  section.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 2rem 1.5rem;
 
-  @media (max-width: 620px) {
-    width: 95%;
-    padding: 1.5rem 1rem;
-  }
-`;
+    input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: ${({ theme }) => theme.colors.secondary};
+      font-size: 1.2em;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px solid ${({ theme }) => theme.colors.primary[500]};
 
-export const Input = styled.input`
-  width: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: ${({ theme }) => theme.colors.secondary};
-  font-size: 1.2em;
-  padding-bottom: 1.2rem;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.primary[500]};
+      &:focus {
+        border-color: ${({ theme }) => theme.colors.primary[700]};
+      }
+    }
 
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.primary[700]};
-  }
-`;
-
-export const ResultsSection = styled.section`
-  align-items: left;
-  text-align: left;
-  width: 80%;
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: 2rem 1.5rem;
-  padding-bottom: 8rem;
-  overflow: auto;
-
-  h3 {
-    text-align: center;
+    @media (max-width: 620px) {
+      width: 95%;
+      padding: 1.5rem 1rem;
+    }
   }
 
-  @media (max-width: 620px) {
-    width: 95%;
-    padding: 2.5rem 1rem;
+  section.results {
+    align-items: left;
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 2rem 1.5rem;
+    padding-bottom: 8rem;
+    overflow: auto;
+
+    h3 {
+      text-align: center;
+    }
+
+    @media (max-width: 620px) {
+      width: 95%;
+      padding: 2.5rem 1rem;
+    }
   }
 `;

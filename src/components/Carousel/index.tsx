@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 import { useMovies } from '../../hooks/useMovies';
 import { useMaxWidth } from '../../hooks/useWindowSize';
 import { Movie } from '../../types/movies';
-import { CarouselItem } from '../CarouselItem';
-import { ChevronBackIcon, ChevronFrontIcon, Container } from './styles';
+import { ChevronLeftIcon, ChevronRightIcon } from '../icons/chevron';
+import { CarouselItem } from './CarouselItem';
+import { Container } from './styles';
 
 export function Carousel() {
-  const { popularMovies } = useMovies();
+  const { popularMovies: movies } = useMovies();
   const [carouselDisplay, setCarouselDisplay] = useState<number[]>([]);
   const isMobileSize = useMaxWidth(480);
   const isTabletSize = useMaxWidth(920);
@@ -15,11 +16,15 @@ export function Carousel() {
   useEffect(() => {
     if (isMobileSize) {
       setCarouselDisplay([0]);
-    } else if (isTabletSize) {
-      setCarouselDisplay([0, 1]);
-    } else {
-      setCarouselDisplay([0, 1, 2, 3]);
+      return;
     }
+
+    if (isTabletSize) {
+      setCarouselDisplay([0, 1]);
+      return;
+    }
+
+    setCarouselDisplay([0, 1, 2, 3]);
   }, [isMobileSize, isTabletSize]);
 
   function handlePlus(arr: Movie[], count: number[]) {
@@ -33,32 +38,22 @@ export function Carousel() {
   }
 
   function handlePreviusCarousel() {
-    if (popularMovies) {
-      setCarouselDisplay((prevState) => handleMinus(prevState));
-    }
+    if (!movies) return;
+    setCarouselDisplay((prevState) => handleMinus(prevState));
   }
 
   function handleNextCarousel() {
-    if (popularMovies) {
-      setCarouselDisplay((prevState) => handlePlus(popularMovies, prevState));
-    }
+    if (!movies) return;
+    setCarouselDisplay((prevState) => handlePlus(movies, prevState));
   }
 
   return (
     <Container>
-      <ChevronBackIcon onClick={handlePreviusCarousel} />
-      {(popularMovies ?? []).map((movie, index) => (
-        <CarouselItem
-          id={movie.id}
-          active={carouselDisplay.includes(index)}
-          key={movie.id}
-          image={movie.poster_path}
-          title={movie.title}
-          categories={movie.genre_ids}
-          rating={movie.vote_average}
-        />
+      {!!movies?.length && <ChevronLeftIcon onClick={handlePreviusCarousel} />}
+      {(movies ?? []).map((movie, index) => (
+        <CarouselItem movie={movie} active={carouselDisplay.includes(index)} key={movie.id} />
       ))}
-      <ChevronFrontIcon onClick={handleNextCarousel} />
+      {!!movies?.length && <ChevronRightIcon onClick={handleNextCarousel} />}
     </Container>
   );
 }

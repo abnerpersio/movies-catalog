@@ -23,3 +23,7 @@ export type Movie = {
 export type SearchResults = {
   results: Movie[];
 };
+
+export type GenreList = {
+  genres: Genre[];
+};

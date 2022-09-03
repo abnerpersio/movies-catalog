@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import MovieService from '../../services/MovieService';
 import { Movie } from '../../types/movies';
 import { debounce } from '../../utils/debounce';
 import { ResultCard } from '../ResultCard';
-import { Container, Input, Overlay, ResultsSection, Section } from './styles';
+import { Container, Overlay } from './styles';
 
 export function SearchBar() {
   const [moviesResult, setMoviesResult] = useState<Movie[]>([]);
@@ -44,14 +45,14 @@ export function SearchBar() {
 
   const isValidList = moviesResult && !notFound;
 
-  return (
+  return createPortal(
     <Overlay>
       <Container>
-        <Section>
-          <Input ref={inputSearchRef} onChange={debounce(handleSearchMovie, 1000)} />
-        </Section>
+        <section className="search">
+          <input ref={inputSearchRef} onChange={debounce(handleSearchMovie, 1000)} />
+        </section>
 
-        <ResultsSection>
+        <section className="results">
           {!isValidList && <h3>Nenhum filme encontrado!</h3>}
           {isValidList &&
             moviesResult?.map((movie) => (
@@ -64,8 +65,9 @@ export function SearchBar() {
                 rating={movie.vote_average}
               />
             ))}
-        </ResultsSection>
+        </section>
       </Container>
-    </Overlay>
+    </Overlay>,
+    document.getElementById('search-root')!,
   );
 }

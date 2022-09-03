@@ -33,6 +33,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     indent: 'off',
     camelcase: 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
   },
   settings: {
     'import/resolver': {

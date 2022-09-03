@@ -1,6 +1,6 @@
 import { API_URL } from '../constants/app';
 import { FormatedMovieFilter } from '../types/filter';
-import { MovieDetails, SearchResults } from '../types/movies';
+import { GenreList, MovieDetails, SearchResults } from '../types/movies';
 import { HttpClient } from './HttpClient';
 
 class MovieService {
@@ -24,6 +24,10 @@ class MovieService {
 
   search(query: string) {
     return this.httpClient.get<SearchResults>('search/movie', { params: { query } });
+  }
+
+  listGenres() {
+    return this.httpClient.get<GenreList>('genre/movie/list');
   }
 }
 
