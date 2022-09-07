@@ -25,27 +25,27 @@ export const Container = styled.div`
   box-shadow: 0px 4px 25px 4px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
 
+  section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 2rem 1.5rem;
+
+    @media (max-width: 620px) {
+      width: 95%;
+      padding: 1.5rem 1rem;
+    }
+  }
+
   & * {
     margin: 0px;
   }
 
   @media (max-width: 480px) {
     padding: 0px;
-  }
-`;
-
-export const Section = styled.section`
-  display: flex;
-  justify-content: flex-start;
-  align-items: left;
-  width: 80%;
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: 2rem 1.5rem;
-
-  @media (max-width: 620px) {
-    width: 95%;
-    padding: 1.5rem 1rem;
   }
 `;
 

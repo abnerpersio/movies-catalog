@@ -88,16 +88,7 @@ export function Catalog() {
 
         <div className="movies-list">
           {(catalog ?? []).map((movie) => (
-            <MovieCard
-              viewType={viewType}
-              key={movie.id}
-              id={movie.id}
-              image={movie.poster_path}
-              title={movie.title}
-              categories={movie.genre_ids}
-              description={movie.overview}
-              rating={movie.vote_average}
-            />
+            <MovieCard viewType={viewType} key={movie.id} movie={movie} />
           ))}
         </div>
 

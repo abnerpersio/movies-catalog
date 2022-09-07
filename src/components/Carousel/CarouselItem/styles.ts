@@ -44,21 +44,21 @@ export const Container = styled.section<ContainerProps>`
   section {
     margin-top: 20px;
     text-align: left;
-  }
 
-  p.category {
-    margin-top: 5px;
-    font-size: 1.2em;
-    font-weight: 300;
-    color: ${({ theme }) => theme.colors.primary[500]};
-  }
+    p.category {
+      margin-top: 5px;
+      font-size: 1.2em;
+      font-weight: 300;
+      color: ${({ theme }) => theme.colors.primary[500]};
+    }
 
-  div {
-    margin-top: 5px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    column-gap: 10px;
+    div {
+      margin-top: 5px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      column-gap: 10px;
+    }
   }
 
   @media (max-width: 920px) {

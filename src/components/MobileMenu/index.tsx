@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { routes } from '../../constants/routes';
-import { Container, LinkWithScroll, MenuLink, Overlay, Section } from './styles';
+import { Container, LinkWithScroll, MenuLink, Overlay } from './styles';
 
 type Props = {
   onToggleMenu: () => void;
@@ -13,13 +13,13 @@ export function MobileMenu({ onToggleMenu }: Props) {
   return (
     <Overlay>
       <Container>
-        <Section>
+        <section>
           <MenuLink onClick={onToggleMenu} to={routes.HOME} activeClassName="active">
             {t('titles.menu.home').toUpperCase()}
           </MenuLink>
-        </Section>
+        </section>
 
-        <Section>
+        <section>
           <LinkWithScroll
             onClick={onToggleMenu}
             to="catalog"
@@ -30,7 +30,7 @@ export function MobileMenu({ onToggleMenu }: Props) {
           >
             {t('titles.menu.catalog').toUpperCase()}
           </LinkWithScroll>
-        </Section>
+        </section>
       </Container>
     </Overlay>
   );

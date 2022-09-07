@@ -3,51 +3,53 @@ import { Link } from 'react-router-dom';
 
 import { routes } from '../../constants/routes';
 import { useMovies } from '../../hooks/useMovies';
+import { Movie } from '../../types/movies';
 import { formatImageUrl } from '../../utils/image';
 import { StarIcon } from '../icons/star';
-import { About, Category, Container, Description, Image, Rating, Title } from './styles';
+import { Container } from './styles';
 
 type Props = {
-  viewType?: string;
-  id: number;
-  image: string;
-  title: string;
-  categories: number[];
-  description: string;
-  rating: number;
+  viewType?: 'grid' | 'list';
+  movie: Movie;
 };
 
-export function MovieCard({ viewType, id, image, title, categories, description, rating }: Props) {
+export function MovieCard({ viewType, movie }: Props) {
   const { genres } = useMovies();
 
   const categoriesName = useMemo(
     () =>
-      categories
+      movie.genre_ids
         .map((category) => genres?.find(({ id: categoryId }) => categoryId === category)?.name)
         .filter(Boolean),
-    [categories, genres],
+    [movie.genre_ids, genres],
   );
 
   return (
     <Container className={viewType === 'list' ? 'list-display' : ''}>
-      <Link to={routes.MOVIE.replace(':id', String(id))}>
-        <Image className={viewType === 'list' ? 'list-display' : ''} src={formatImageUrl(image)} />
+      <Link to={routes.MOVIE.replace(':id', String(movie.id))}>
+        <img
+          className={viewType === 'list' ? 'list-display' : ''}
+          src={formatImageUrl(movie.poster_path)}
+          alt={movie.title}
+        />
       </Link>
 
-      <About>
-        <Title to={routes.MOVIE.replace(':id', String(id))}>{title}</Title>
+      <section>
+        <Link className="movie-title" to={routes.MOVIE.replace(':id', String(movie.id))}>
+          {movie.title}
+        </Link>
 
-        <Category>
+        <p className="category">
           <span>{categoriesName.slice(0, 2).join(', ')}</span>
-        </Category>
+        </p>
 
-        <Rating>
+        <div>
           <StarIcon />
-          <p>{rating}</p>
-        </Rating>
+          <p>{movie.vote_average}</p>
+        </div>
 
-        <Description>{`${description.substring(0, 150)}...`}</Description>
-      </About>
+        <p className="movie-description">{`${movie.overview.substring(0, 150)}...`}</p>
+      </section>
     </Container>
   );
 }
