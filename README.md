@@ -1,6 +1,6 @@
 # Movies Catalog
 
-Projeto baseado em filmes inspirado em uma layout do [Figma]([https://www.figma.com/file/V1Qfp19RorvXZI1qshlLGL/Suno-Movies?node-id=0%3A1](https://www.figma.com/file/QFLiJZ5oHCL5BMfRjNmEIO/Movies-Catalog?type=design&node-id=0%3A1&mode=design&t=lxCyxakXB6RyXCTa-1)) e utilizando a API do [MovieDB](https://developers.themoviedb.org/4/getting-started) como base.
+Projeto baseado em filmes inspirado em uma layout do [Figma](https://www.figma.com/file/QFLiJZ5oHCL5BMfRjNmEIO/Movies-Catalog?type=design&node-id=0%3A1&mode=design&t=lxCyxakXB6RyXCTa-1) e utilizando a API do [MovieDB](https://developers.themoviedb.org/4/getting-started) como base.
 
 ## Como rodar o projeto
 
